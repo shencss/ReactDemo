@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { paging } from '../reducers/reducer';
 import Body from './Body';
+import { Route } from 'react-router-dom';
 
 
 class ReportApp extends Component {
@@ -16,9 +17,9 @@ class ReportApp extends Component {
     render () {
         return(
                 <div>
-                    <Header title={this.props.title}/>
-                    <Body />
-                    <Nav onClick={this.props.onClick}/>
+                    <Header title={this.props.title} />
+                    <Route path='/' component={Body} />
+                    <Nav onClick={this.props.onClick} />
                 </div>
         );
     }
