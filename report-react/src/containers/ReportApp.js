@@ -1,18 +1,42 @@
 import React, { Component } from 'react';
-import HeaderContainer from './HeaderContainer';
-import NavContainer from './NavContainer';
+import Header from '../components/Header';
+import Nav from '../components/Nav';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { paging } from '../reducers/reducer';
+import Body from './Body';
+
+
 class ReportApp extends Component {
+
+    static propTypes = {
+        title: PropTypes.string
+    }
 
     render () {
         return(
                 <div>
-                    <HeaderContainer />
-                    <NavContainer />
+                    <Header title={this.props.title}/>
+                    <Body />
+                    <Nav onClick={this.props.onClick}/>
                 </div>
         );
     }
 }
 
-export default ReportApp;
+const mapStateToProps = (state) => {
+    return {
+        title: state.title
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onClick: (id) => {
+            dispatch(paging(id));
+        }
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(ReportApp);
 
 
