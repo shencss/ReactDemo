@@ -4,25 +4,26 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 
+
 class BillPage extends Component {
 
     static propTypes = {
         billList: PropTypes.array
     }
 
+    componentWillReceiveProps () {
+        console.log("KKK");
+    }
+
     render () {
         return (
             <div>
-                <List list={this.props.billList} />
+                <List list={this.props.list} />
             </div>
         );
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        billList:state.billList
-    }
-}
 
-export default connect(mapStateToProps,null)(BillPage);
+
+export default BillPage;
