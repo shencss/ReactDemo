@@ -6,22 +6,25 @@ class Item extends Component {
     static propTypes = {
         item: PropTypes.object
     }
-    constructor (props) {
-        super (props);
-        this.state = {
-            item: props.item
+    //构造函数只在第一次实例化时调用
+
+    handleCancel () {
+        console.log(this.props.index)
+        if (this.props.onCancel) {
+            this.props.onCancel(this.props.index);
         }
     }
 
     render () {
         return (
             <li className="item">
-                <span className="item-title" >{this.state.item.billId ? this.state.item.billId : this.state.item.deviceName}</span>
-                <span className="item-status">{this.state.item.billId ? this.state.item.billStatus : this.state.item.deviceStatus}</span><br/>
-                <span className="item-time">{this.state.item.billId ? this.state.item.deviceName + ' '+ this.state.item.billTime.substr(5) : '设备编号:'+this.state.item.deviceId}</span>
+                <span className="item-title" >{this.props.item.billId ? this.props.item.billId : this.props.item.deviceName}</span>
+                <span className="item-status">{this.props.item.billId ? this.props.item.billStatus : this.props.item.deviceStatus}</span><br/>
+                <span className="item-time">{this.props.item.billId ? this.props.item.deviceName + ' '+ this.props.item.billTime.substr(5) : '设备编号:'+this.props.item.deviceId}</span>
                 <span className="control">
-                    <button id="checkBill" >查看</button>
-                    <button id="cancelBill">撤销</button>
+                    <button id="checkBtn" >查看</button>
+                    <button id="cancelBtn" style={(this.props.item.billId && this.props.item.billStatus !== '已完成')? {} : {'display': 'none'} }
+                        onClick={this.handleCancel.bind(this)}>撤销</button>
                 </span>
             </li>
         );

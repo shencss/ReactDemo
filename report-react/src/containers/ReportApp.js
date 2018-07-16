@@ -14,6 +14,7 @@ class ReportApp extends Component {
         title: PropTypes.string
     }
 
+    //调用_loadData()初始化数据
     componentWillMount () {
        /* localStorage.setItem('report_data',JSON.stringify({"page":"Bill","title":"我的报单","deviceList":[{"deviceId":"85FG30UI","deviceStatus":"已维修","deviceName":"联想笔记本","deviceType":"电脑","history":[{"billId":"EBE7344E","time":"2018年7月5日10:58","organization":"A公司","money":"78.00元","description":"无法正常开机"}]}],
         "billList":[
@@ -26,22 +27,20 @@ class ReportApp extends Component {
         this._loadData();
     }
  
-
+    //从localStorage中加载数据
     _loadData () {
         let data = localStorage.getItem('report_data');
         data = data ?  JSON.parse(data) : {};
-        console.log(data);
         this.props.initData(data);
     }
 
 
     render () {
-        console.log(this.props);
         return(
                 <div>
                     <Header title={this.props.title} />
                     <Body/>
-                    <Nav onClick={this.props.onClick} />
+                    <Nav onClick={this.props.onNavClick} />
                 </div>
         );
     }
@@ -60,7 +59,7 @@ const mapDispatchToProps = (dispatch) => {
         initData: (data) => {
             dispatch(init(data));
         },
-        onClick: (id) => {
+        onNavClick: (id) => {
             dispatch(paging(id));
         }
     }

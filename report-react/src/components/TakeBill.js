@@ -66,6 +66,7 @@ class TakeBill extends Component {
         
         return (
             <div>
+                {/* 为了提交form时不刷新*/}
                 <iframe name='myFrame' title="frame" style={{'display': 'none'}}></iframe>
 
                 <form id="bill-form" target="myFrame"
@@ -127,7 +128,9 @@ class TakeBill extends Component {
                     <input type="submit" id="bill-submit"onClick={this.handleSubmit.bind(this)} />
 			    </form>
 
-                <div  className='cover' style={this.state.show? {'display': 'block'} : {'display': 'none'}}></div>
+                <div  className='cover' style={this.state.show? {'display': 'block'} : {'display': 'none'}}
+                    onClick={this.handleClick.bind(this)}>
+                </div>
 
                 <button id="take-bill-now"
                     style={this.props.page === 'Contact'? {'bottom': '-50px'} : {'bottom': '50px'}} 
