@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Page from './Page';
 import TakeBill from '../components/TakeBill';
+import Cover from '../components/Cover';
 import { connect } from 'react-redux';
-import { addBillItem } from '../reducers/reducer';
+import { addBillItem, toggleCover } from '../reducers/reducer';
 
 class Body extends Component {
 
@@ -21,21 +22,28 @@ class Body extends Component {
         }
     }
 
-    handleClick () {
-        if (this.props.onClick) {
-            this.props.onClick();
+    handleCoverClick () {
+        if (this.props.onCoverClick) {
+            this.props.onCoverClick();
         }
     }
 
     render () {
-        return <div className="body"><Page /><TakeBill page={this.props.page} onSubmit={this.handleSubmit.bind(this)}/></div>
-
+        console.log(this.props.cover)
+        return (
+            <div className="body">
+                <Page toggleCover={this.handleCoverClick.bind(this)}/>
+                <TakeBill page={this.props.page} onSubmit={this.handleSubmit.bind(this)}/>
+                <Cover show={this.props.cover} onClick={this.handleCoverClick.bind(this)}/>
+            </div>
+        ) 
     }
 }
 
 const mapStateToProps = (state) => {
     return {
         page: state.page,
+        cover: state.cover,
         billList: state.billList,
         deviceList: state.deviceList
     }
@@ -45,6 +53,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onSubmit: (billItem) => {
             dispatch(addBillItem(billItem));
+        },
+        onCoverClick: () => {
+            dispatch(toggleCover())
         }
     }
 }

@@ -5,6 +5,7 @@ const PAGE_DEVICE = 'PAGE_DEVICE';
 const PAGE_CONTACT = 'PAGE_CONTACT';
 const ADD_BILLITEM = 'ADD_BILLITEM';
 const CANCEL_BILL = 'CANCEL_BILL';
+const TOGGLE_COVER = 'TOGGLE_COVER';
 
 
 
@@ -32,6 +33,10 @@ export default function (state = {}, action) {
             billList.splice(action.index,1);
             //必须是[...billList]
             return {...state, billList: [...billList]}
+
+        case 'TOGGLE_COVER':
+            return {...state, cover: !state.cover}
+        
 
         default:
             return state;
@@ -69,5 +74,11 @@ export const cancelBill = (index) => {
     return {
         type: CANCEL_BILL,
         index: index
+    }
+}
+
+export const toggleCover = () => {
+    return {
+        type: TOGGLE_COVER
     }
 }

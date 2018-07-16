@@ -167,6 +167,36 @@ body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrol
 	overflow-y: scroll;
 }
 
+/*** Page ***/
+.prompt {
+	position:fixed; 
+	left:0; 
+	right:0; 
+	bottom: -150px;
+	z-index: 4;	
+	transition: .5s ease;
+}
+.prompt button {
+	background-color: rgba(255, 255, 255, .8);
+	margin: 12px auto;
+	padding: 0;
+	width: 90%;
+	height: 45px;
+	font-size: 16px;
+	border-radius: 10px;
+	text-align: center;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+	border: none;
+	cursor: pointer;
+	display: block;
+}
+#ok {
+	color: red;
+}
+#no {
+	color: #2196F3;
+}
+
 /*** List ***/
 .list{	
 	padding: 0;

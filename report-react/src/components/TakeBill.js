@@ -128,10 +128,6 @@ class TakeBill extends Component {
                     <input type="submit" id="bill-submit"onClick={this.handleSubmit.bind(this)} />
 			    </form>
 
-                <div  className='cover' style={this.state.show? {'display': 'block'} : {'display': 'none'}}
-                    onClick={this.handleClick.bind(this)}>
-                </div>
-
                 <button id="take-bill-now"
                     style={this.props.page === 'Contact'? {'bottom': '-50px'} : {'bottom': '50px'}} 
                     onClick={this.handleClick.bind(this)}>

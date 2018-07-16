@@ -4,7 +4,6 @@ import Item from './Item';
 class List extends Component {
 
     hanldeCancel (index) {
-        console.log("PPP")
         if (this.props.onCancel) {
             this.props.onCancel(index);
         }
