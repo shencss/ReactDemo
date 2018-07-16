@@ -41,7 +41,8 @@ class Body extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        page:state.page
+        page: state.page,
+        list: state.billList
     }
 }
 

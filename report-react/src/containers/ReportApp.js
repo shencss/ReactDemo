@@ -13,10 +13,6 @@ class ReportApp extends Component {
     static propTypes = {
         title: PropTypes.string
     }
-    constructor (props) {
-        super (props);
-        console.log(props);
-    }
 
     componentWillMount () {
        /* localStorage.setItem('report_data',JSON.stringify({"page":"Bill","title":"我的报单","deviceList":[{"deviceId":"85FG30UI","deviceStatus":"已维修","deviceName":"联想笔记本","deviceType":"电脑","history":[{"billId":"EBE7344E","time":"2018年7月5日10:58","organization":"A公司","money":"78.00元","description":"无法正常开机"}]}],
@@ -34,6 +30,7 @@ class ReportApp extends Component {
     _loadData () {
         let data = localStorage.getItem('report_data');
         data = data ?  JSON.parse(data) : {};
+        console.log(data);
         this.props.initData(data);
     }
 
@@ -43,7 +40,7 @@ class ReportApp extends Component {
         return(
                 <div>
                     <Header title={this.props.title} />
-                    <Body list={this.props.list}/>
+                    <Body/>
                     <Nav onClick={this.props.onClick} />
                 </div>
         );

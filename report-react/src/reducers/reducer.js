@@ -11,8 +11,7 @@ const ADD_BILLITEM = 'ADD_BILLITEM';
 export default function (state = {}, action) {
     switch (action.type) {
         case 'INIT_DATA':
-            console.log(action.data);
-            return {list: action.data.billList}
+            return {...action.data}
         case 'PAGE_BILL':
             return {...state, page: 'Bill' , title: '我的报单'}
         case 'PAGE_DEVICE':
