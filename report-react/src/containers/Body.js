@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Page from './Page';
-import TakeBill from '../containers/TakeBill';
+import TakeBill from '../components/TakeBill';
 import { connect } from 'react-redux';
 import { addBillItem, toggleCover } from '../reducers/reducer';
 

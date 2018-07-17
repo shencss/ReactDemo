@@ -5,6 +5,7 @@ import Prompt from '../components/Prompt'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { cancelBill } from '../reducers/reducer';
+import BillDetail from '../components/BillDetail';
 
 
 
@@ -19,8 +20,9 @@ class Page extends Component {
     constructor () {
         super ();
         this.state = {
+            index: undefined,
             showPrompt: false,
-            index: undefined
+            showBillDetail: false
         }
     }
 
@@ -31,7 +33,15 @@ class Page extends Component {
         localStorage.setItem('report_data',JSON.stringify(data));
     }
 
-    //处理撤销发起
+    //点击查看
+    handleOnCheck (index) {
+        this.setState({
+            index: index,
+            showBillDetail: !this.state.showBillDetail
+        });
+    }
+
+    //点击撤销
     handleOnCancel (index) {
         this.setState({
             showPrompt: true,
@@ -63,7 +73,8 @@ class Page extends Component {
             case 'Bill':
                 return (
                     <div id="page">
-                        <List list={this.props.billList}  onCancel={this.handleOnCancel.bind(this)} />
+                        <List list={this.props.billList} onCancel={this.handleOnCancel.bind(this)} onCheck={this.handleOnCheck.bind(this)}/>
+                        <BillDetail show={this.state.showBillDetail} item={this.props.billList[this.state.index]}/>
                         <Prompt show={this.state.showPrompt} onConfirmClick={this.handleOnConfirmCancel.bind(this)} onRecallClick={this.handleOnRecallCancel.bind(this)} />
                     </div>
                 );

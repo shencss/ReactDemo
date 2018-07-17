@@ -8,10 +8,14 @@ class Item extends Component {
     }
     //构造函数只在第一次实例化时调用
 
-    handleCancel () {
-        console.log(this.props.index)
+    handleOnCancel () {
         if (this.props.onCancel) {
             this.props.onCancel(this.props.index);
+        }
+    }
+    handleOnCheck () {
+        if (this.props.onCheck) {
+            this.props.onCheck(this.props.index);
         }
     }
 
@@ -22,9 +26,10 @@ class Item extends Component {
                 <span className="item-status">{this.props.item.billId ? this.props.item.billStatus : this.props.item.deviceStatus}</span><br/>
                 <span className="item-time">{this.props.item.billId ? this.props.item.deviceName + ' '+ this.props.item.billTime.substr(5) : '设备编号:'+this.props.item.deviceId}</span>
                 <span className="control">
-                    <button id="checkBtn" >查看</button>
+                    <button id="checkBtn" onClick={this.handleOnCheck.bind(this)}>查看</button>
                     <button id="cancelBtn" style={(this.props.item.billId && this.props.item.billStatus !== '已完成')? {} : {'display': 'none'} }
-                        onClick={this.handleCancel.bind(this)}>撤销</button>
+                        onClick={this.handleOnCancel.bind(this)}>撤销
+                    </button>
                 </span>
             </li>
         );

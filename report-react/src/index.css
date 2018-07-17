@@ -91,6 +91,21 @@ hr {
 	cursor: pointer;
 	z-index: 4;
 }
+/*** 卡片 ***/
+.card {
+	position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    border-radius: 10px;
+    box-shadow:1px 1px 1px 2px rgba(0, 0, 0, .1);
+   	padding: 25px 0;
+	background-color: #fff;	
+	text-align: center;
+	z-index: 4;
+	max-height: 75%;
+}
 /*** 隐藏滚动条 ***/
 body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrollbar, form::-webkit-scrollbar {
 	width: 0;
@@ -175,7 +190,7 @@ body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrol
 	right:0; 
 	bottom: -150px;
 	z-index: 4;	
-	transition: .5s ease;
+	transition: .3s ease;
 }
 .prompt button {
 	background-color: rgba(255, 255, 255, .8);
@@ -322,4 +337,63 @@ body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrol
 	transition: bottom .5s ease-in-out;
 }
 
+/*** BillDetail ***/
+.card-title {
+	color: #2196F3;
+}
+.table-container {
+	max-height: 350px;
+	overflow-y: scroll;
+}
+.card table {
+	width: 95%;
+	padding: 5px;
+	margin: 0 auto;
+	font-size: 15px;
+}
+.card th {
+	margin: 3.5px;
+	float: left;
+	font-weight: 200;
+	color: #888;
+}
+ .card td {
+	color: #000;
+	font-weight: 400;
+	margin: 3.5px;
+	float: right;
+	max-width: 70%;
+	text-align: left;
+	word-break: break-all;word-wrap: break-word;
+}
+.card-btns {
+	margin-top: 20px;
+}
 
+.card-btns button {
+	border-radius: 3px;
+	margin:5px 5px;
+	height: 30px;
+	width: 100px;
+	padding: 0;
+	background-color: #FFF;
+	box-shadow: none;
+	font-size: 15px;
+	line-height: 25px;
+	cursor: pointer;
+	border: .5px solid;
+	z-index: 6;
+}
+#contactService {
+	color: #a0cf67;
+}
+#checkFinish {
+	color: #2196F3;
+}
+#billAgain {
+	color: #2196F3;
+}
+#cancelBill {
+	border: .5px solid #ff9966;
+	color: #ff9966;
+}
