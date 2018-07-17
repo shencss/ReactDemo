@@ -15,6 +15,12 @@ class BillDetail extends Component {
         }
     }
 
+    handleOnCancel () {
+        if (this.props.onCancel) {
+            this.props.onCancel();
+        }
+    }
+
     render () {
         if (this.props.index !== undefined ) {
             let item = this.props.list[this.props.index];
@@ -43,7 +49,7 @@ class BillDetail extends Component {
 
                                     <tr>
                                         <th>设备名称</th>
-                                        <td>item.deviceName}</td>
+                                        <td>{item.deviceName}</td>
                                     </tr>
 
                                     <tr>
@@ -84,7 +90,8 @@ class BillDetail extends Component {
                             <button id="billAgain" style={item.billStatus === '已完成' ? {} : {'display': 'none'}}>再次报修</button>
                             <button id="contactService">联系客服</button>
                             <button id="cancelBill" 
-                                style={item.billStatus === '已完成' ? {'display': 'none'} : {}}>撤销报单
+                                style={item.billStatus === '已完成' ? {'display': 'none'} : {}}
+                                onClick={this.handleOnCancel.bind(this)}>撤销报单
                             </button>
                             <button id="checkFinish" 
                                 style={item.billStatus === '已完成' ? {} : {'display': 'none'}}>完工报告

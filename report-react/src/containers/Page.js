@@ -50,11 +50,12 @@ class Page extends Component {
         });
     }
 
-    //点击遮布退出
+    //点击遮布或关闭按钮退出
     handleOnClose () {
         this.setState({
             showPrompt: false,
-            showDetail: false
+            showDetail: false,
+            index: undefined
         })
     }
 
@@ -83,8 +84,8 @@ class Page extends Component {
                 return (
                     <div id="page">
                         <List list={this.props.billList} onCancel={this.handleOnCancel.bind(this)} onCheck={this.handleOnCheck.bind(this)} />
-                        <BillDetail show={this.state.showDetail} index={this.state.index} onClose={this.handleOnClose.bind(this)} />
-                        <Prompt show={this.state.showPrompt} onConfirmClick={this.handleOnConfirmCancel.bind(this)} onRecallClick={this.handleOnRecallCancel.bind(this)} onCoverClick={this.handleOnClose.bind(this)} />
+                        <BillDetail show={this.state.showDetail} index={this.state.index} onClose={this.handleOnClose.bind(this)} onCancel={this.handleOnCancel.bind(this)} />
+                        <Prompt show={this.state.showPrompt} onConfirmClick={this.handleOnConfirmCancel.bind(this)} onRecallClick={this.handleOnRecallCancel.bind(this)} onCoverClick={this.handleOnClose.bind(this)}   />
                     </div>
                 );
             case 'Device':

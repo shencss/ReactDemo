@@ -20,7 +20,9 @@ class DeviceDetail extends Component {
 
     render () {
         if (this.props.index !== undefined ) {
+
             let item = this.props.list[this.props.index];
+            console.log(item)
             return  (
                 <div id="DeviceDetail">
                     <div className="card"  style={this.props.show ? {'display': 'block'} : {'display': 'none'}}>
@@ -57,7 +59,7 @@ class DeviceDetail extends Component {
                         
                         <hr/>
                         <div className="card-btns">
-                            <button id="checkWarranty">报修状况</button>
+                            <button id="checkWarranty">保修状况</button>
                             <button id="billNow">立即报修</button>
                         </div>
                     </div>
