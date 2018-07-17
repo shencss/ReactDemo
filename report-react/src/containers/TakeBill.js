@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Cover from '../components/Cover';
 
 class TakeBill extends Component {
     
@@ -65,7 +66,7 @@ class TakeBill extends Component {
     render () {
         
         return (
-            <div>
+            <div id="take-bill">
                 {/* 为了提交form时不刷新*/}
                 <iframe name='myFrame' title="frame" style={{'display': 'none'}}></iframe>
 
@@ -132,6 +133,7 @@ class TakeBill extends Component {
                     style={this.props.page === 'Contact'? {'bottom': '-50px'} : {'bottom': '50px'}} 
                     onClick={this.handleClick.bind(this)}>
                 报修</button>
+                <Cover show={this.state.show} onClick={this.handleClick.bind(this)} />
             </div>
         );
     }

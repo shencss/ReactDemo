@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Page from './Page';
-import TakeBill from '../components/TakeBill';
-import Cover from '../components/Cover';
+import TakeBill from '../containers/TakeBill';
 import { connect } from 'react-redux';
 import { addBillItem, toggleCover } from '../reducers/reducer';
 
@@ -29,12 +28,10 @@ class Body extends Component {
     }
 
     render () {
-        console.log(this.props.cover)
         return (
             <div className="body">
                 <Page toggleCover={this.handleCoverClick.bind(this)}/>
                 <TakeBill page={this.props.page} onSubmit={this.handleSubmit.bind(this)}/>
-                <Cover show={this.props.cover} onClick={this.handleCoverClick.bind(this)}/>
             </div>
         ) 
     }
