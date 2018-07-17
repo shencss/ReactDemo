@@ -77,12 +77,12 @@ class TakeBill extends Component {
                     <span id="close-btn" onClick={this.handleClick.bind(this)}>X</span>
                     <span className="form-title">请填写报单信息</span><hr/>
 
-                    <label htmlFor="deviceName">设备名称:</label>
+                    <label htmlFor="deviceName">设备名称: </label>
                     <input type="text" name="deviceName" placeholder="请输入设备名称" value={this.state.deviceName} 
                         onChange={this.handleChange.bind(this)}
                     /><br/>
 
-                    <label htmlFor="deviceType">设备类型:</label>
+                    <label htmlFor="deviceType">设备类型: </label>
                     <select name="deviceType" value={this.state.deviceType}
                         onChange={this.handleChange.bind(this)}>
                         <option value="电脑">电脑</option>
@@ -93,17 +93,17 @@ class TakeBill extends Component {
                         <option value="其他">其他</option>
                     </select><br/>
 
-                    <label htmlFor="description">故障描述:</label>
+                    <label htmlFor="description">故障描述: </label>
                     <textarea name="description" cols="23" rows="4" placeholder="请输入故障描述" value={this.state.description} 
                         onChange={this.handleChange.bind(this)}>
                     </textarea><br/>
 
-                    <label htmlFor="appointment">预约时间:</label>
+                    <label htmlFor="appointment">预约时间: </label>
                     <input type="datetime-local" name="appointment" placeholder="请输入预约时间" value={this.state.appointment} 
                         onChange={this.handleChange.bind(this)}
                     /><br/>
 
-                    <label htmlFor="organization">维修公司:</label>
+                    <label htmlFor="organization">维修公司: </label>
                     <select name="organization" value={this.state.organization}
                         onChange={this.handleChange.bind(this)}>
                         <option value="A公司">A公司</option>
@@ -111,17 +111,17 @@ class TakeBill extends Component {
                         <option value="C公司">C公司</option>
                     </select><br/>
 
-                    <label htmlFor="phone">联系电话:</label>
+                    <label htmlFor="phone">联系电话: </label>
                     <input type="phone" name="phone" placeholder="请输入联系电话" value={this.state.phone} 
                         onChange={this.handleChange.bind(this)}
                     /><br/>
 
-                    <label htmlFor="address">维修地址:</label>
+                    <label htmlFor="address">维修地址: </label>
                     <input type="address" name="address" placeholder="请输入维修地址" value={this.state.address} 
                         onChange={this.handleChange.bind(this)}
                     /><br/>
 
-                    <label htmlFor="remark">其他备注:</label>
+                    <label htmlFor="remark">其他备注: </label>
                     <textarea name="remark" cols="23" rows="4" placeholder="请输入备注信息"value={this.state.remark}
                         onChange={this.handleChange.bind(this)}>
                     </textarea><br/>
