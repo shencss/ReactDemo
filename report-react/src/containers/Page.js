@@ -5,7 +5,8 @@ import Prompt from '../components/Prompt'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { cancelBill } from '../reducers/reducer';
-import BillDetail from '../components/BillDetail';
+import BillDetail from '../containers/BillDetail';
+import DeviceDetail from '../containers/DeviceDetail';
 
 
 
@@ -37,7 +38,7 @@ class Page extends Component {
     handleOnCheck (index) {
         this.setState({
             index: index,
-            showBillDetail: !this.state.showBillDetail
+            showDetail: true
         });
     }
 
@@ -47,6 +48,14 @@ class Page extends Component {
             showPrompt: true,
             index: index
         });
+    }
+
+    //点击遮布退出
+    handleOnClose () {
+        this.setState({
+            showPrompt: false,
+            showDetail: false
+        })
     }
 
     //确认撤销
@@ -73,15 +82,16 @@ class Page extends Component {
             case 'Bill':
                 return (
                     <div id="page">
-                        <List list={this.props.billList} onCancel={this.handleOnCancel.bind(this)} onCheck={this.handleOnCheck.bind(this)}/>
-                        <BillDetail show={this.state.showBillDetail} item={this.props.billList[this.state.index]}/>
-                        <Prompt show={this.state.showPrompt} onConfirmClick={this.handleOnConfirmCancel.bind(this)} onRecallClick={this.handleOnRecallCancel.bind(this)} />
+                        <List list={this.props.billList} onCancel={this.handleOnCancel.bind(this)} onCheck={this.handleOnCheck.bind(this)} />
+                        <BillDetail show={this.state.showDetail} index={this.state.index} onClose={this.handleOnClose.bind(this)} />
+                        <Prompt show={this.state.showPrompt} onConfirmClick={this.handleOnConfirmCancel.bind(this)} onRecallClick={this.handleOnRecallCancel.bind(this)} onCoverClick={this.handleOnClose.bind(this)} />
                     </div>
                 );
             case 'Device':
                 return (
                     <div id="page">
-                        <List list={this.props.deviceList}  />
+                        <List list={this.props.deviceList} onCheck={this.handleOnCheck.bind(this)} />
+                        <DeviceDetail show={this.state.showDetail} index={this.state.index} onClose={this.handleOnClose.bind(this)} />
                     </div>
                 );
             case 'Contact':

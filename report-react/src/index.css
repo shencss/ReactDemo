@@ -103,8 +103,54 @@ hr {
    	padding: 25px 0;
 	background-color: #fff;	
 	text-align: center;
-	z-index: 4;
+	z-index: 5;
 	max-height: 75%;
+}
+.card-title {
+	color: #2196F3;
+}
+.table-container {
+	max-height: 350px;
+	overflow-y: scroll;
+}
+.card table {
+	width: 95%;
+	padding: 5px;
+	margin: 0 auto;
+	font-size: 15px;
+}
+.card th {
+	margin: 3.5px;
+	float: left;
+	font-weight: 200;
+	color: #888;
+}
+ .card td {
+	color: #000;
+	font-weight: 400;
+	margin: 3.5px;
+	float: right;
+	max-width: 70%;
+	text-align: left;
+	word-break: break-all;word-wrap: break-word;
+}
+.card-btns {
+	margin-top: 20px;
+}
+
+.card-btns button {
+	border-radius: 3px;
+	margin:5px 5px;
+	height: 30px;
+	width: 100px;
+	padding: 0;
+	background-color: #FFF;
+	box-shadow: none;
+	font-size: 15px;
+	line-height: 25px;
+	cursor: pointer;
+	border: .5px solid;
+	z-index: 6;
 }
 /*** 隐藏滚动条 ***/
 body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrollbar, form::-webkit-scrollbar {
@@ -338,52 +384,6 @@ body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrol
 }
 
 /*** BillDetail ***/
-.card-title {
-	color: #2196F3;
-}
-.table-container {
-	max-height: 350px;
-	overflow-y: scroll;
-}
-.card table {
-	width: 95%;
-	padding: 5px;
-	margin: 0 auto;
-	font-size: 15px;
-}
-.card th {
-	margin: 3.5px;
-	float: left;
-	font-weight: 200;
-	color: #888;
-}
- .card td {
-	color: #000;
-	font-weight: 400;
-	margin: 3.5px;
-	float: right;
-	max-width: 70%;
-	text-align: left;
-	word-break: break-all;word-wrap: break-word;
-}
-.card-btns {
-	margin-top: 20px;
-}
-
-.card-btns button {
-	border-radius: 3px;
-	margin:5px 5px;
-	height: 30px;
-	width: 100px;
-	padding: 0;
-	background-color: #FFF;
-	box-shadow: none;
-	font-size: 15px;
-	line-height: 25px;
-	cursor: pointer;
-	border: .5px solid;
-	z-index: 6;
-}
 #contactService {
 	color: #a0cf67;
 }
@@ -396,4 +396,27 @@ body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrol
 #cancelBill {
 	border: .5px solid #ff9966;
 	color: #ff9966;
+}
+
+/*** DeviceDetail ***/
+#billNow {
+	color: #2196F3;
+}
+#checkWarranty {	
+	color: #a0cf67;
+}
+
+/*** RepairHistory ***/
+#repair-history {
+	width: 85%;
+	font-size: 12px;
+	background-color: #edf0f1;
+	padding: 0;
+	border-radius: 4px;
+	margin-bottom: 10px;
+	border: 1px solid #2196F3;
+	
+}
+#repair-history th, #repair-history td {
+	margin: 0;
 }

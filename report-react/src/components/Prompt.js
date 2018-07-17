@@ -3,22 +3,11 @@ import Cover from './Cover';
 
 class Prompt extends Component {
 
-    constructor () {
-        super ();
-        this.state = {
-            showPrompt: false
-        }
-    }
-    componentWillReceiveProps (props) {
-        this.setState({
-            showPrompt: props.show
-        });
-    }
 
-    handleCoverClick () {
-        this.setState({
-            showPrompt: !this.state.showPrompt
-        })
+    handleOnCoverClick () {
+        if (this.props.onCoverClick) {
+            this.props.onCoverClick();
+        }
     }
 
     handleOnConfirmCancel () {
@@ -36,8 +25,8 @@ class Prompt extends Component {
     render () {
         return (
             <div>
-                <Cover show={this.state.showPrompt} onClick={this.handleCoverClick.bind(this)} />
-                <div className="prompt" style={this.state.showPrompt ? {'bottom': '50px'} : {}}>
+                <Cover show={this.props.show} onClick={this.handleOnCoverClick.bind(this)} />
+                <div className="prompt" style={this.props.show ? {'bottom': '50px'} : {}}>
                     <button id="ok" onClick={this.handleOnConfirmCancel.bind(this)}>确定</button>
                     <button id="no" onClick={this.handleOnRecallCancel.bind(this)}>取消</button>
                 </div> 

@@ -3,18 +3,6 @@ import React, { Component } from 'react';
 
 class Cover extends Component {
 
-    constructor () {
-        super ();
-        this.state = {
-            showCover: false
-        }
-    }
-
-    componentWillReceiveProps (props) {
-        this.setState({
-            showCover: props.show
-        });
-    }
 
     handleOnClick () {
         if (this.props.onClick) {
@@ -24,7 +12,7 @@ class Cover extends Component {
 
     render () {
         return (
-            <div  className='cover' style={this.state.showCover ? {'display': 'block'} : {'display': 'none'}}
+            <div  className='cover' style={this.props.show ? {'display': 'block'} : {'display': 'none'}}
                     onClick={this.handleOnClick.bind(this)}>
             </div>
         );
