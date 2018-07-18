@@ -23,7 +23,7 @@ class DeviceDetail extends Component {
     //点击立即报修
     handleOnBill() {
         if (this.props.onBill) {
-            this.props.onBill();
+            this.props.onBill(this.props.list[this.props.index]);
         }
     }
 
@@ -63,7 +63,7 @@ class DeviceDetail extends Component {
                         <hr/>
                         <div className="card-btns">
                             <button id="check-warranty">保修状况</button>
-                            <button id="bill-now">立即报修</button>
+                            <button id="bill-now" onClick={this.handleOnBill.bind(this)}>立即报修</button>
                         </div>
                     </div>
                 <Cover show={this.props.show} onClick={this.handleOnClose.bind(this)}/>

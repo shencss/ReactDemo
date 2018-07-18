@@ -30,7 +30,7 @@ class BillDetail extends Component {
     //点击再次报修
     handleOnBill() {
         if (this.props.onBill) {
-            this.props.onBill(this.props.index);
+            this.props.onBill(this.props.list[this.props.index]);
         }
     }
 
@@ -50,22 +50,18 @@ class BillDetail extends Component {
                                         <th>订单编号</th>
                                         <td>{item.billId}</td>
                                     </tr>
-
                                     <tr>
                                         <th>订单时间</th>
                                         <td>{item.billTime}</td>
                                     </tr>
-
                                     <tr>
                                         <th>订单状态</th>
                                         <td>{item.billStatus}</td>
                                     </tr>
-
                                     <tr>
                                         <th>设备名称</th>
                                         <td>{item.deviceName}</td>
                                     </tr>
-
                                     <tr>
                                         <th>设备类型</th>
                                         <td>{item.deviceType}</td>
@@ -75,25 +71,25 @@ class BillDetail extends Component {
                                         <th>维修机构</th>
                                         <td>{item.organization}</td>
                                     </tr>
-
                                     <tr>
                                         <th>预约时间</th>
                                         <td>{item.appointment}</td>
                                     </tr>
-
                                     <tr>
                                         <th>维修地址</th>
                                         <td>{item.address}</td>
                                     </tr>
-
                                     <tr>
                                         <th>联系电话</th>
                                         <td>{item.phone}</td>
                                     </tr>
-
                                     <tr>
                                         <th>故障描述</th>
                                         <td>{item.description}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>备注信息</th>
+                                        <td>{item.remark}</td>
                                     </tr>
                                 </tbody>
                             </table>

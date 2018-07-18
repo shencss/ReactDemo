@@ -5,7 +5,6 @@ class Item extends Component {
 
     static propTypes = {
         item: PropTypes.object,
-        key: PropTypes.number,
         index: PropTypes.number,
         onCancel: PropTypes.func,
         onCheck: PropTypes.func

@@ -7,6 +7,7 @@ class TakeBill extends Component {
     static propTypes = {
         show: PropTypes.bool,
         page: PropTypes.string,
+        load: PropTypes.object,
         onClose: PropTypes.func,
         onSubmit: PropTypes.func,
         onBill: PropTypes.func
@@ -30,6 +31,21 @@ class TakeBill extends Component {
         }
     }
 
+    //load一直存在了 怎么办？？
+    componentWillReceiveProps(props) {
+        if (props.load) {
+            this.setState({
+                deviceName: props.load.deviceName,
+                deviceType: props.load.deviceType,
+                description: props.load.description,
+                organization: props.load.organization,
+                phone: props.load.phone,
+                address: props.load.address,
+                remark: props.load.remark
+            });
+        }
+    }
+
     //点击悬浮按钮报修
     handleOnBill() {
         if (this.props.onBill) {
@@ -48,7 +64,7 @@ class TakeBill extends Component {
     handleOnChange(e) {
         this.setState({
             [e.target.name]: e.target.value
-        })
+        });
     }
 
     //点击提交按钮
@@ -84,7 +100,7 @@ class TakeBill extends Component {
                     <span className="form-title">请填写报单信息</span>
                     <hr/>
                     <label htmlFor="deviceName">设备名称: </label>
-                    <input type="text" name="deviceName" placeholder="请输入设备名称" value={this.state.deviceName} 
+                    <input type="text" name="deviceName" placeholder="请输入设备名称" value={this.state.deviceName || ''} 
                         onChange={this.handleOnChange.bind(this)}
                     /><br/>
                     <label htmlFor="deviceType">设备类型: </label>
@@ -113,11 +129,11 @@ class TakeBill extends Component {
                         <option value="C公司">C公司</option>
                     </select><br/>
                     <label htmlFor="phone">联系电话: </label>
-                    <input type="phone" name="phone" placeholder="请输入联系电话" value={this.state.phone} 
+                    <input type="phone" name="phone" placeholder="请输入联系电话" value={this.state.phone || ''} 
                         onChange={this.handleOnChange.bind(this)}
                     /><br/>
                     <label htmlFor="address">维修地址: </label>
-                    <input type="address" name="address" placeholder="请输入维修地址" value={this.state.address} 
+                    <input type="address" name="address" placeholder="请输入维修地址" value={this.state.address || ''} 
                         onChange={this.handleOnChange.bind(this)}
                     /><br/>
                     <label htmlFor="remark">其他备注: </label>

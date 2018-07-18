@@ -25,7 +25,8 @@ class Body extends Component {
             index: -1,
             takeBill: false,
             showPrompt: false,
-            showDetail: false
+            showDetail: false,
+            loadBill: {}
         }
     }
 
@@ -72,10 +73,12 @@ class Body extends Component {
     }
 
     //在详细信息中点击再次/马上报修
-    handleOnBill() {
+    handleOnBill(load) {
         this.setState({
             takeBill: true,
-            showDetail: false
+            showDetail: false,
+            //loadBill是为了实现再次/立即报修时将信息load进表单中
+            loadBill: load
         });
     }
 
@@ -124,7 +127,7 @@ class Body extends Component {
                                 onRecallClick={this.handleOnRecallCancel.bind(this)} onClose={this.handleOnClose.bind(this)}   
                             />
                         </div>
-                        <TakeBill show={this.state.takeBill} page={this.props.page} 
+                        <TakeBill show={this.state.takeBill} page={this.props.page} load={this.state.loadBill}
                             onSubmit={this.handleOnSubmit.bind(this)} onClose={this.handleOnClose.bind(this)} onBill={this.handleOnBill.bind(this)}
                         />
                     </div>
