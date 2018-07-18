@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import Cover from '../components/Cover';
+import PropTypes from 'prop-types';
 
 class TakeBill extends Component {
     
-    constructor () {
+    static propTypes = {
+        show: PropTypes.bool,
+        page: PropTypes.string,
+        onClose: PropTypes.func,
+        onSubmit: PropTypes.func,
+        onBill: PropTypes.func
+    }
+
+    constructor() {
         super ();
         this.state = {
             billId: 'KKKKKKKK',
@@ -20,26 +29,30 @@ class TakeBill extends Component {
             report: {}
         }
     }
-    handleOnBill () {
+
+    //点击悬浮按钮报修
+    handleOnBill() {
         if (this.props.onBill) {
             this.props.onBill();
         }
     }
 
-    handleOnClose () {
+    //点击遮布或关闭按钮
+    handleOnClose() {
         if (this.props.onClose) {
             this.props.onClose();
         }
     }
 
-    handleOnChange (e) {
+    //获取表单数据
+    handleOnChange(e) {
         this.setState({
             [e.target.name]: e.target.value
         })
     }
 
-
-    handleOnSubmit () {
+    //点击提交按钮
+    handleOnSubmit() {
         const billItem = {
             billId: this.state.billId,
             billTime: this.state.billTime,
@@ -60,24 +73,20 @@ class TakeBill extends Component {
         return false;
     }
 
-    render () {
-        
-        return (
+    render() {
+        return(
             <div id="take-bill">
                 {/* 为了提交form时不刷新*/}
-                <iframe name='myFrame' title="frame" style={{'display': 'none'}}></iframe>
-
-                <form id="bill-form" target="myFrame"
-                    style={this.props.show? {'display': 'block'} : {'display': 'none'}}>
-
+                <iframe name='my-frame' title="frame" style={{'display': 'none'}}></iframe>
+                <form id="bill-form" target="my-frame"
+                    style={this.props.show? {} : {'display': 'none'}}>
                     <span id="close-btn" onClick={this.handleOnClose.bind(this)}>X</span>
-                    <span className="form-title">请填写报单信息</span><hr/>
-
+                    <span className="form-title">请填写报单信息</span>
+                    <hr/>
                     <label htmlFor="deviceName">设备名称: </label>
                     <input type="text" name="deviceName" placeholder="请输入设备名称" value={this.state.deviceName} 
                         onChange={this.handleOnChange.bind(this)}
                     /><br/>
-
                     <label htmlFor="deviceType">设备类型: </label>
                     <select name="deviceType" value={this.state.deviceType}
                         onChange={this.handleOnChange.bind(this)}>
@@ -88,17 +97,14 @@ class TakeBill extends Component {
                         <option value="配件">配件</option>
                         <option value="其他">其他</option>
                     </select><br/>
-
                     <label htmlFor="description">故障描述: </label>
                     <textarea name="description" cols="23" rows="4" placeholder="请输入故障描述" value={this.state.description} 
                         onChange={this.handleOnChange.bind(this)}>
                     </textarea><br/>
-
                     <label htmlFor="appointment">预约时间: </label>
                     <input type="datetime-local" name="appointment" placeholder="请输入预约时间" value={this.state.appointment} 
                         onChange={this.handleOnChange.bind(this)}
                     /><br/>
-
                     <label htmlFor="organization">维修公司: </label>
                     <select name="organization" value={this.state.organization}
                         onChange={this.handleOnChange.bind(this)}>
@@ -106,31 +112,25 @@ class TakeBill extends Component {
                         <option value="B公司">B公司</option>
                         <option value="C公司">C公司</option>
                     </select><br/>
-
                     <label htmlFor="phone">联系电话: </label>
                     <input type="phone" name="phone" placeholder="请输入联系电话" value={this.state.phone} 
                         onChange={this.handleOnChange.bind(this)}
                     /><br/>
-
                     <label htmlFor="address">维修地址: </label>
                     <input type="address" name="address" placeholder="请输入维修地址" value={this.state.address} 
                         onChange={this.handleOnChange.bind(this)}
                     /><br/>
-
                     <label htmlFor="remark">其他备注: </label>
                     <textarea name="remark" cols="23" rows="4" placeholder="请输入备注信息"value={this.state.remark}
                         onChange={this.handleOnChange.bind(this)}>
                     </textarea><br/>
-
-                    <input type="submit" id="bill-submit"onClick={this.handleOnSubmit.bind(this)} />
+                    <input type="submit" id="bill-submit"onClick={this.handleOnSubmit.bind(this)}/>
 			    </form>
-
+                <Cover show={this.props.show} onClick={this.handleOnClose.bind(this)} />
                 <button id="take-bill-now"
-                    style={this.props.page === 'Contact'? {'bottom': '-50px'} : {'bottom': '50px'}} 
+                    style={this.props.page === 'Contact'? {'bottom': '-10px'} : {}} 
                     onClick={this.handleOnBill.bind(this)}>报修
                 </button>
-
-                <Cover show={this.props.show} onClick={this.handleOnClose.bind(this)} />
             </div>
         );
     }

@@ -1,22 +1,31 @@
 import React, { Component } from 'react';
 import Item from './Item';
+import PropTypes from 'prop-types';
 
 class List extends Component {
 
-    handleOnCancel (index) {
+    static propType = {
+        list: PropTypes.array,
+        onCancel: PropTypes.func,
+        onCheck: PropTypes.func
+    }
+
+    //点击撤销按钮
+    handleOnCancel(index) {
         if (this.props.onCancel) {
             this.props.onCancel(index);
         }
     }
 
-    handleOnCheck (index) {
+    //点击查看按钮
+    handleOnCheck(index) {
         if (this.props.onCheck) {
             this.props.onCheck(index);
         }
     }
 
-    render () {
-        return (
+    render() {
+        return(
             <ul className="list">
                 {this.props.list.map((item, i) => <Item item={item} key={i} index={i} onCancel={this.handleOnCancel.bind(this)} onCheck={this.handleOnCheck.bind(this)} />)}
             </ul>

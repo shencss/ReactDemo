@@ -1,8 +1,6 @@
 //Action
 const INIT_DATA = 'INIT_DATA';
-const PAGE_BILL = 'PAGE_BILL';
-const PAGE_DEVICE = 'PAGE_DEVICE';
-const PAGE_CONTACT = 'PAGE_CONTACT';
+const PAGE = 'PAGE';
 const ADD_BILLITEM = 'ADD_BILLITEM';
 const DELETE_BILLITEM = 'DELETE_BILLITEM';
 
@@ -12,25 +10,19 @@ export default function (state = {}, action) {
     const billList = state.billList;
     switch (action.type) {
         case 'INIT_DATA':
-            return {...action.data}
+            return { ...action.data }
 
-        case 'PAGE_BILL':
-            return {...state, page: 'Bill' , title: '我的报单'}
-
-        case 'PAGE_DEVICE':
-            return {...state, page: 'Device' , title: '我的设备'}
-
-        case 'PAGE_CONTACT':
-            return {...state, page: 'Contact' , title: '联系我们'}
+        case 'PAGE':
+            return { ...state, page: action.page }
 
         case 'ADD_BILLITEM':
             billList.unshift(action.billItem);
-            return {...state, billList: [...billList]}
+            return { ...state, billList: [...billList] }
 
         case 'DELETE_BILLITEM':
-            billList.splice(action.index,1);
+            billList.splice(action.index, 1);
             //必须是[...billList]
-            return {...state, billList: [...billList]}
+            return { ...state, billList: [...billList] }
 
         default:
             return state;
@@ -47,13 +39,13 @@ export const init = (data) => {
 export const paging = (id) => {
     switch (id) {
         case 'nav-bill':
-            return { type: PAGE_BILL};
+            return { type: PAGE, page: 'Bill' };
         case 'nav-device':
-            return { type: PAGE_DEVICE};
+            return { type: PAGE, page: 'Device' };
         case 'nav-contact':
-            return { type: PAGE_CONTACT};
+            return { type: PAGE, page: 'Contact' };
         default:
-            return { type: PAGE_BILL};
+            return { type: PAGE, page: 'Bill' };
     }
 }
 

@@ -1,40 +1,48 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Cover from '../components/Cover';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class BillDetail extends Component {
 
     static propTypes = {
-        list: PropTypes.array
+        show: PropTypes.bool,
+        index: PropTypes.number,
+        list: PropTypes.arrayOf(PropTypes.object),
+        onClose: PropTypes.func,
+        onCancel: PropTypes.func,
+        onBill: PropTypes.func
     }
 
-    handleOnClose () {
+    //点击遮布或关闭按钮
+    handleOnClose() {
         if (this.props.onClose) {
             this.props.onClose();
         }
     }
 
-    handleOnCancel () {
+    //点击撤销报单
+    handleOnCancel() {
         if (this.props.onCancel) {
-            this.props.onCancel();
+            this.props.onCancel(this.props.index);
         }
     }
 
-    handleOnBill () {
+    //点击再次报修
+    handleOnBill() {
         if (this.props.onBill) {
-            this.props.onBill();
+            this.props.onBill(this.props.index);
         }
     }
 
-    render () {
-        if (this.props.index !== undefined ) {
-            let item = this.props.list[this.props.index];
-            return  (
-                <div id="billDetail">
-                    <div className="card"  style={this.props.show ? {'display': 'block'} : {'display': 'none'}}>
+    render() {
+        if (this.props.show && this.props.index !== -1) {
+            const item = this.props.list[this.props.index];
+            return(
+                <div id="bill-detail">
+                    <div className="card">
                         <span className="iconfont" id="close-btn" onClick={this.handleOnClose.bind(this)}>X</span>
-                        <span className="card-title">订单详细信息</span><hr/>
+                        <span className="card-title">订单详细信息</span>
+                        <hr/>
                         <div className="table-container">
                             <table>
                                 <tbody>
@@ -90,35 +98,28 @@ class BillDetail extends Component {
                                 </tbody>
                             </table>
                         </div>
-                        
                         <hr/>
                         <div className="card-btns">
-                            <button id="billAgain" style={item.billStatus === '已完成' ? {} : {'display': 'none'}}
+                            <button id="bill-again" style={item.billStatus === '已完成' ? {} : {'display': 'none'}}
                                 onClick={this.handleOnBill.bind(this)}>再次报修
                             </button>
-                            <button id="contactService">联系客服</button>
-                            <button id="cancelBill" 
+                            <button id="contact-service">联系客服</button>
+                            <button id="cancel-bill" 
                                 style={item.billStatus === '已完成' ? {'display': 'none'} : {}}
                                 onClick={this.handleOnCancel.bind(this)}>撤销报单
                             </button>
-                            <button id="checkFinish" 
+                            <button id="check-finish" 
                                 style={item.billStatus === '已完成' ? {} : {'display': 'none'}}>完工报告
                             </button>
                         </div>
                     </div>
-                <Cover show={this.props.show} onClick={this.handleOnClose.bind(this)}/>
+                <Cover show={this.props.show} onClick={this.handleOnClose.bind(this)} />
                 </div>
             );
         } else {
-            return <div></div>
+            return <div id="bill-detail"></div>
         }
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        list: state.billList
-    }
-}
-
-export default connect(mapStateToProps,null)(BillDetail);
+export default BillDetail;

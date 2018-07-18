@@ -170,7 +170,7 @@ body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrol
 	background-color: #2196F3;
 	text-align: center;
 }
-.title {
+.header-title {
 	font-size: 20px;
 	color: #FFF;
 	letter-spacing: 1px;
@@ -309,11 +309,11 @@ body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrol
 	line-height: 23px;
 	cursor: pointer;
 }
-#checkBtn{
+#check-btn{
 	border: .5px solid #a0cf67;
 	color: #a0cf67;
 }
-#cancelBtn {
+#cancel-btn {
 	border: .5px solid #ff9966;
 	color: #ff9966;
 }
@@ -329,7 +329,7 @@ body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrol
 }
 
 /*** Contact ***/
-.contact {
+#contact {
 	position: fixed;
 	top: 50%;
 	transform: translateY(-50%);
@@ -366,10 +366,9 @@ body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrol
 /*** TakeBill ***/
 #take-bill-now {
 	position: fixed;
-	bottom: 50px;
+	bottom: 70px;
 	left: 50%;
 	transform: translateX(-50%);
-	margin: 20px auto;
 	border-radius: 50%;
 	background-color: #2196F3;
 	color: #FFF;
@@ -384,25 +383,25 @@ body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrol
 }
 
 /*** BillDetail ***/
-#contactService {
+#contact-service {
 	color: #a0cf67;
 }
-#checkFinish {
+#check-finish {
 	color: #2196F3;
 }
-#billAgain {
+#bill-again {
 	color: #2196F3;
 }
-#cancelBill {
+#cancel-bill {
 	border: .5px solid #ff9966;
 	color: #ff9966;
 }
 
 /*** DeviceDetail ***/
-#billNow {
+#bill-now {
 	color: #2196F3;
 }
-#checkWarranty {	
+#check-warranty {	
 	color: #a0cf67;
 }
 

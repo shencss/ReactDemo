@@ -2,28 +2,37 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Cover from '../components/Cover';
 import RepairHistory from '../components/RepairHistory';
-import { connect } from 'react-redux';
 
 class DeviceDetail extends Component {
 
-    
-
     static propTypes = {
-        list: PropTypes.array
+        show: PropTypes.bool,
+        index: PropTypes.number,
+        list: PropTypes.arrayOf(PropTypes.object),
+        onClose: PropTypes.func,
+        onBill: PropTypes.func
     }
 
-    handleOnClose () {
+    //点击遮布或关闭按钮
+    handleOnClose() {
         if (this.props.onClose) {
             this.props.onClose();
         }
     }
 
-    render () {
-        if (this.props.index !== undefined ) {
-            let item = this.props.list[this.props.index];
-            return  (
-                <div id="DeviceDetail">
-                    <div className="card"  style={this.props.show ? {'display': 'block'} : {'display': 'none'}}>
+    //点击立即报修
+    handleOnBill() {
+        if (this.props.onBill) {
+            this.props.onBill();
+        }
+    }
+
+    render() {
+        if (this.props.show && this.props.index !== -1 ) {
+            const item = this.props.list[this.props.index];
+            return(
+                <div id="device-detail">
+                    <div className="card">
                         <span className="iconfont" id="close-btn" onClick={this.handleOnClose.bind(this)}>X</span>
                         <span className="card-title">设备详细信息</span><hr/>
                         <div className="table-container">
@@ -33,20 +42,17 @@ class DeviceDetail extends Component {
                                         <th>设备编号</th>
                                         <td>{item.deviceId}</td>
                                     </tr>
-
                                     <tr>
                                         <th>设备名称</th>
                                         <td>{item.deviceName}</td>
                                     </tr>
-
                                     <tr>
                                         <th>设备类型</th>
                                         <td>{item.deviceType}</td>
                                     </tr>
-
                                     <tr>
                                         <th>维修历史</th>
-                                        <td>∨</td>
+                                        <td>{item.history.length > 0 ? '∨' : '无'}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -54,26 +60,19 @@ class DeviceDetail extends Component {
                                 {item.history.map((item, i) => <RepairHistory historyItem={item} key={i} />)}
                             </div>                       
                         </div>
-                        
                         <hr/>
                         <div className="card-btns">
-                            <button id="checkWarranty">保修状况</button>
-                            <button id="billNow">立即报修</button>
+                            <button id="check-warranty">保修状况</button>
+                            <button id="bill-now">立即报修</button>
                         </div>
                     </div>
                 <Cover show={this.props.show} onClick={this.handleOnClose.bind(this)}/>
                 </div>
             );
         } else {
-            return <div></div>
+            return <div id="device-detail"></div>
         }
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        list: state.deviceList
-    }
-}
-
-export default connect(mapStateToProps,null)(DeviceDetail);
+export default DeviceDetail;

@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 
 class Cover extends Component {
 
+    static propTypes = {
+        show: PropTypes.bool,
+        onClick: PropTypes.func
+    }
 
-    handleOnClick () {
+    //点击遮布
+    handleOnClick() {
         if (this.props.onClick) {
             this.props.onClick();
         }
     }
 
-    render () {
-        return (
-            <div  className='cover' style={this.props.show ? {'display': 'block'} : {'display': 'none'}}
-                    onClick={this.handleOnClick.bind(this)}>
+    render() {
+        return(
+            <div className='cover' style={this.props.show ? {} : {'display': 'none'}}
+                onClick={this.handleOnClick.bind(this)}>
             </div>
         );
     }
