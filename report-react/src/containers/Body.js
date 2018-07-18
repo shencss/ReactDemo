@@ -44,19 +44,6 @@ class Body extends Component {
         })
     }
 
-    handleOnBill () {
-        this.setState({
-            takeBill: true
-        })
-    }
-    handleOnClose () {
-        this.setState({
-            takeBill: false,
-            showDetail: false,
-            showPrompt: false
-        })
-    }
-
     //点击撤销
     handleOnCancel (index) {
         this.setState({
@@ -71,6 +58,22 @@ class Body extends Component {
             index: index,
             showDetail: true
         });
+    }
+
+    handleOnBill () {
+        this.setState({
+            takeBill: true,
+            showDetail: false
+        });
+    }
+
+    handleOnClose () {
+        this.setState({
+            index: undefined,
+            takeBill: false,
+            showDetail: false,
+            showPrompt: false
+        })
     }
 
      //确认撤销
