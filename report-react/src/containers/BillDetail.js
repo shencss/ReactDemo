@@ -21,6 +21,12 @@ class BillDetail extends Component {
         }
     }
 
+    handleOnBill () {
+        if (this.props.onBill) {
+            this.props.onBill();
+        }
+    }
+
     render () {
         if (this.props.index !== undefined ) {
             let item = this.props.list[this.props.index];
@@ -87,7 +93,9 @@ class BillDetail extends Component {
                         
                         <hr/>
                         <div className="card-btns">
-                            <button id="billAgain" style={item.billStatus === '已完成' ? {} : {'display': 'none'}}>再次报修</button>
+                            <button id="billAgain" style={item.billStatus === '已完成' ? {} : {'display': 'none'}}
+                                onClick={this.handleOnBill.bind(this)}>再次报修
+                            </button>
                             <button id="contactService">联系客服</button>
                             <button id="cancelBill" 
                                 style={item.billStatus === '已完成' ? {'display': 'none'} : {}}

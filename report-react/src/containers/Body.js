@@ -1,46 +1,150 @@
 import React, { Component } from 'react';
-import Page from './Page';
 import TakeBill from '../components/TakeBill';
+import List from '../components/List';
+import Contact from '../components/Contact';
+import Prompt from '../components/Prompt'
+import BillDetail from '../containers/BillDetail';
+import DeviceDetail from '../containers/DeviceDetail';
 import { connect } from 'react-redux';
-import { addBillItem, toggleCover } from '../reducers/reducer';
+import { addBillItem, deleteBillItem } from '../reducers/reducer';
 
 class Body extends Component {
 
+    constructor () {
+        super ();
+        this.state = {
+            takeBill: false,
+            index: undefined,
+            showPrompt: false,
+            showDetail: false
+        }
+    }
 
-    _addBill (item) {
+    _addBillItem (item) {
         const data = JSON.parse(localStorage.report_data);
         data.billList.unshift( item);
         localStorage.setItem('report_data',JSON.stringify(data));
     }
 
-
-    handleSubmit (billItem) {
-        this._addBill (billItem);
-        if (this.props.onSubmit) {
-            this.props.onSubmit(billItem);
-        }
+    //在localstorage中删除一条报单
+    _deleteBillItem (index) {
+        const data = JSON.parse(localStorage.report_data);
+        data.billList.splice(index, 1);
+        localStorage.setItem('report_data',JSON.stringify(data));
     }
 
-    handleCoverClick () {
-        if (this.props.onCoverClick) {
-            this.props.onCoverClick();
+
+    handleOnSubmit (billItem) {
+        this._addBillItem (billItem);
+        if (this.props.onAddBillItem) {
+            this.props.onAddBillItem(billItem);
         }
+        this.setState({
+            takeBill: false
+        })
     }
+
+    handleOnBill () {
+        this.setState({
+            takeBill: true
+        })
+    }
+    handleOnClose () {
+        this.setState({
+            takeBill: false,
+            showDetail: false,
+            showPrompt: false
+        })
+    }
+
+    //点击撤销
+    handleOnCancel (index) {
+        this.setState({
+            showPrompt: true,
+            index: index
+        });
+    }
+
+     //点击查看
+     handleOnCheck (index) {
+        this.setState({
+            index: index,
+            showDetail: true
+        });
+    }
+
+     //确认撤销
+     handleOnConfirmCancel () {
+        this._deleteBillItem (this.state.index);
+        if (this.props.onDeleteBillItem) {   
+            this.props.onDeleteBillItem(this.state.index);
+        }
+        this.setState({
+            showPrompt: false,
+            index: undefined
+        });
+    }
+
+     //取消撤销
+     handleOnRecallCancel () {
+        this.setState({
+            showPrompt: false,
+            index: undefined
+        });
+    }
+
 
     render () {
-        return (
-            <div className="body">
-                <Page toggleCover={this.handleCoverClick.bind(this)}/>
-                <TakeBill page={this.props.page} onSubmit={this.handleSubmit.bind(this)}/>
-            </div>
-        ) 
+        switch (this.props.page) {
+            case 'Bill':
+                return (
+                    <div className="body">
+                        <div id="bill-page">
+                            <List list={this.props.billList} onCancel={this.handleOnCancel.bind(this)} onCheck={this.handleOnCheck.bind(this)} />
+                            <BillDetail show={this.state.showDetail} index={this.state.index} 
+                                onClose={this.handleOnClose.bind(this)} onCancel={this.handleOnCancel.bind(this)} onBill={this.handleOnBill.bind(this)}
+                            />
+                            <Prompt show={this.state.showPrompt} onConfirmClick={this.handleOnConfirmCancel.bind(this)} 
+                                onRecallClick={this.handleOnRecallCancel.bind(this)} onClose={this.handleOnClose.bind(this)}   
+                            />
+                        </div>
+                        <TakeBill show={this.state.takeBill} page={this.props.page} 
+                            onSubmit={this.handleOnSubmit.bind(this)} onClose={this.handleOnClose.bind(this)} onBill={this.handleOnBill.bind(this)}
+                        />
+                    </div>
+                );
+            case 'Device':
+                return (
+                    <div className="body">
+                        <div id="device-page">
+                            <List list={this.props.deviceList} onCheck={this.handleOnCheck.bind(this)} />
+                            <DeviceDetail show={this.state.showDetail} index={this.state.index} onClose={this.handleOnClose.bind(this)} />
+                        </div>
+                        <TakeBill show={this.state.takeBill} page={this.props.page} 
+                            onSubmit={this.handleOnSubmit.bind(this)} onClose={this.handleOnClose.bind(this)} onBill={this.handleOnBill.bind(this)}
+                        />
+                    </div>
+                );
+            case 'Contact':
+                return (
+                    <div className="body">
+                        <div id="contact-page">
+                            <Contact />
+                        </div>
+                        <TakeBill show={this.state.takeBill} page={this.props.page} 
+                            onSubmit={this.handleOnSubmit.bind(this)} onClose={this.handleOnClose.bind(this)} onBill={this.handleOnBill.bind(this)}
+                        />
+                    </div>
+                );
+            default:
+                return
+        }
     }
 }
 
 const mapStateToProps = (state) => {
     return {
         page: state.page,
-        cover: state.cover,
         billList: state.billList,
         deviceList: state.deviceList
     }
@@ -48,11 +152,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSubmit: (billItem) => {
+        onAddBillItem: (billItem) => {
             dispatch(addBillItem(billItem));
         },
-        onCoverClick: () => {
-            dispatch(toggleCover())
+        onDeleteBillItem: (index) => {
+            dispatch(deleteBillItem(index));
         }
     }
 }

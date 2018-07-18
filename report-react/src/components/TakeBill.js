@@ -6,7 +6,6 @@ class TakeBill extends Component {
     constructor () {
         super ();
         this.state = {
-            show: false,
             billId: 'KKKKKKKK',
             billTime: '2018年7月15日12:00',
             billStatus: '受理中',
@@ -21,11 +20,16 @@ class TakeBill extends Component {
             report: {}
         }
     }
+    handleOnBill () {
+        if (this.props.onBill) {
+            this.props.onBill();
+        }
+    }
 
-    handleOnClick () {
-        this.setState({
-            show: !this.state.show
-        })
+    handleOnClose () {
+        if (this.props.onClose) {
+            this.props.onClose();
+        }
     }
 
     handleOnChange (e) {
@@ -53,9 +57,6 @@ class TakeBill extends Component {
         if (this.props.onSubmit) {
             this.props.onSubmit(billItem)
         }
-        this.setState({
-            show: false
-        })
         return false;
     }
 
@@ -67,9 +68,9 @@ class TakeBill extends Component {
                 <iframe name='myFrame' title="frame" style={{'display': 'none'}}></iframe>
 
                 <form id="bill-form" target="myFrame"
-                    style={this.state.show? {'display': 'block'} : {'display': 'none'}}>
+                    style={this.props.show? {'display': 'block'} : {'display': 'none'}}>
 
-                    <span id="close-btn" onClick={this.handleOnClick.bind(this)}>X</span>
+                    <span id="close-btn" onClick={this.handleOnClose.bind(this)}>X</span>
                     <span className="form-title">请填写报单信息</span><hr/>
 
                     <label htmlFor="deviceName">设备名称: </label>
@@ -126,10 +127,10 @@ class TakeBill extends Component {
 
                 <button id="take-bill-now"
                     style={this.props.page === 'Contact'? {'bottom': '-50px'} : {'bottom': '50px'}} 
-                    onClick={this.handleOnClick.bind(this)}>报修
+                    onClick={this.handleOnBill.bind(this)}>报修
                 </button>
 
-                <Cover show={this.state.show} onClick={this.handleOnClick.bind(this)} />
+                <Cover show={this.props.show} onClick={this.handleOnClose.bind(this)} />
             </div>
         );
     }

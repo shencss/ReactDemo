@@ -4,9 +4,7 @@ const PAGE_BILL = 'PAGE_BILL';
 const PAGE_DEVICE = 'PAGE_DEVICE';
 const PAGE_CONTACT = 'PAGE_CONTACT';
 const ADD_BILLITEM = 'ADD_BILLITEM';
-const CANCEL_BILL = 'CANCEL_BILL';
-const TOGGLE_COVER = 'TOGGLE_COVER';
-
+const DELETE_BILLITEM = 'DELETE_BILLITEM';
 
 
 //reducer
@@ -29,14 +27,10 @@ export default function (state = {}, action) {
             billList.unshift(action.billItem);
             return {...state, billList: [...billList]}
 
-        case 'CANCEL_BILL':
+        case 'DELETE_BILLITEM':
             billList.splice(action.index,1);
             //必须是[...billList]
             return {...state, billList: [...billList]}
-
-        case 'TOGGLE_COVER':
-            return {...state, cover: !state.cover}
-        
 
         default:
             return state;
@@ -70,15 +64,11 @@ export const addBillItem = (billItem) => {
     }
 }
 
-export const cancelBill = (index) => {
+export const deleteBillItem = (index) => {
     return {
-        type: CANCEL_BILL,
+        type: DELETE_BILLITEM,
         index: index
     }
 }
 
-export const toggleCover = () => {
-    return {
-        type: TOGGLE_COVER
-    }
-}
+
