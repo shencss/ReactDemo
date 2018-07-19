@@ -28,9 +28,9 @@ class BillDetail extends Component {
     }
 
     //点击再次报修
-    handleOnBill() {
+    handleOnBill(e) {
         if (this.props.onBill) {
-            this.props.onBill(this.props.list[this.props.index]);
+            this.props.onBill(e,this.props.list[this.props.index]);
         }
     }
 

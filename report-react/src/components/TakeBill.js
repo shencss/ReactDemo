@@ -30,9 +30,10 @@ class TakeBill extends Component {
             report: {}
         }
     }
-
-    //load一直存在了 怎么办？？
-    componentWillReceiveProps(props) {
+ 
+    componentWillReceiveProps(props) {  
+        //再次/立即报修时将信息加载尽来 
+        console.log(props.load)
         if (props.load) {
             this.setState({
                 deviceName: props.load.deviceName,
@@ -43,11 +44,30 @@ class TakeBill extends Component {
                 address: props.load.address,
                 remark: props.load.remark
             });
+        } else {
+            this.setState({
+                billId: 'KKKKKKKK',
+                billTime: '2018年7月15日12:00',
+                billStatus: '受理中',
+                deviceName: '',
+                deviceType: '电脑',
+                description: '',
+                appointment: '',
+                organization: 'A公司',
+                phone: '',
+                address: '',
+                remark: '',
+                report: {}
+            });
         }
     }
 
+
     //点击悬浮按钮报修
-    handleOnBill() {
+    handleOnBill(e,load = {}) {
+        this.setState({
+            ...load
+        })
         if (this.props.onBill) {
             this.props.onBill();
         }
@@ -94,14 +114,14 @@ class TakeBill extends Component {
             <div id="take-bill">
                 {/* 为了提交form时不刷新*/}
                 <iframe name='my-frame' title="frame" style={{'display': 'none'}}></iframe>
-                <form id="bill-form" target="my-frame"
-                    style={this.props.show? {} : {'display': 'none'}}>
+                <form id="bill-form" target="my-frame" style={this.props.show? {} : {'display': 'none'}}
+                    >
                     <span id="close-btn" onClick={this.handleOnClose.bind(this)}>X</span>
                     <span className="form-title">请填写报单信息</span>
                     <hr/>
                     <label htmlFor="deviceName">设备名称: </label>
                     <input type="text" name="deviceName" placeholder="请输入设备名称" value={this.state.deviceName || ''} 
-                        onChange={this.handleOnChange.bind(this)}
+                        required="required" onChange={this.handleOnChange.bind(this)}
                     /><br/>
                     <label htmlFor="deviceType">设备类型: </label>
                     <select name="deviceType" value={this.state.deviceType}
@@ -115,11 +135,11 @@ class TakeBill extends Component {
                     </select><br/>
                     <label htmlFor="description">故障描述: </label>
                     <textarea name="description" cols="23" rows="4" placeholder="请输入故障描述" value={this.state.description} 
-                        onChange={this.handleOnChange.bind(this)}>
+                        required="required" onChange={this.handleOnChange.bind(this)}>
                     </textarea><br/>
                     <label htmlFor="appointment">预约时间: </label>
                     <input type="datetime-local" name="appointment" placeholder="请输入预约时间" value={this.state.appointment} 
-                        onChange={this.handleOnChange.bind(this)}
+                        required="required" onChange={this.handleOnChange.bind(this)}
                     /><br/>
                     <label htmlFor="organization">维修公司: </label>
                     <select name="organization" value={this.state.organization}
@@ -130,11 +150,11 @@ class TakeBill extends Component {
                     </select><br/>
                     <label htmlFor="phone">联系电话: </label>
                     <input type="phone" name="phone" placeholder="请输入联系电话" value={this.state.phone || ''} 
-                        onChange={this.handleOnChange.bind(this)}
+                        required="required" onChange={this.handleOnChange.bind(this)}
                     /><br/>
                     <label htmlFor="address">维修地址: </label>
                     <input type="address" name="address" placeholder="请输入维修地址" value={this.state.address || ''} 
-                        onChange={this.handleOnChange.bind(this)}
+                        required="required" onChange={this.handleOnChange.bind(this)}
                     /><br/>
                     <label htmlFor="remark">其他备注: </label>
                     <textarea name="remark" cols="23" rows="4" placeholder="请输入备注信息"value={this.state.remark}

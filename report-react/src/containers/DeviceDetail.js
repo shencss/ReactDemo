@@ -21,9 +21,10 @@ class DeviceDetail extends Component {
     }
 
     //点击立即报修
-    handleOnBill() {
+    handleOnBill(e) {
         if (this.props.onBill) {
-            this.props.onBill(this.props.list[this.props.index]);
+            console.log(this.props.list[this.props.index])
+            this.props.onBill(e,this.props.list[this.props.index]);
         }
     }
 
