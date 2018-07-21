@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Item from './Item';
+import ItemContainer from '../containers/ItemContainer';
 import PropTypes from 'prop-types';
 
 class List extends Component {
@@ -10,34 +10,17 @@ class List extends Component {
         onCheck: PropTypes.func
     }
 
-    //点击撤销按钮
-    handleOnCancel(index) {
-        if (this.props.onCancel) {
-            this.props.onCancel(index);
-        }
-    }
-
-    //点击删除按钮
-    handleOnDelete(index) {
-        console.log("OO")
-        if (this.props.onDelete) {
-            this.props.onDelete(index);
-        }
-    }
-
-    //点击查看按钮
-    handleOnCheck(index) {
-        if (this.props.onCheck) {
-            this.props.onCheck(index);
+    //点击再次/立即报修
+    handleOnBill(e,item) {
+        if (this.props.onBill) {
+            this.props.onBill(e,item);
         }
     }
 
     render() {
         return(
             <ul className="list">
-                {this.props.list.map((item, i) => <Item item={item} key={i} index={i} 
-                    onCancel={this.handleOnCancel.bind(this)} onCheck={this.handleOnCheck.bind(this)} onDelete={this.handleOnDelete.bind(this)} />)
-                }
+                {this.props.list.map((item, i) => <ItemContainer item={item} key={i} index={i} onBill={this.handleOnBill.bind(this)} />)}
             </ul>
         );
     }

@@ -17,13 +17,13 @@ class TakeBill extends Component {
         super ();
         this.state = {
             billId: 'KKKKKKKK',
-            billTime: '2018年7月15日12:00',
+            billTime: '',
             billStatus: '受理中',
             deviceName: '',
             deviceType: '电脑',
             description: '',
             appointment: '',
-            organization: 'A公司',
+            organization: '广州飞元维修公司',
             phone: '',
             address: '',
             remark: '',
@@ -45,22 +45,35 @@ class TakeBill extends Component {
             });
         } else {
             this.setState({
-                billId: 'KKKKKKKK',
-                billTime: '2018年7月15日12:00',
-                billStatus: '受理中',
                 deviceName: '',
                 deviceType: '电脑',
                 description: '',
                 appointment: '',
-                organization: 'A公司',
+                organization: '广州飞元维修公司',
                 phone: '',
                 address: '',
-                remark: '',
-                report: {}
+                remark: ''
             });
         }
     }
 
+    //用以格式化报单时间
+    _formatBilltDate(date) {
+        var year = date.getFullYear();
+        var month = (date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1);
+        var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+        var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+        var minuts = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+        return year+"年"+month+"月"+day+'日'+hours+":"+minuts;
+    }
+
+    //用以格式化预约时间
+    _formatAppointmentDate(date) {
+        date = date.replace(/-/,'年');
+        date = date.replace(/-/,'月');
+        date = date.replace(/T/,'日');
+        return date;
+    }
 
     //点击悬浮按钮报修
     handleOnBill(e,load = {}) {
@@ -90,12 +103,12 @@ class TakeBill extends Component {
     handleOnSubmit() {
         const billItem = {
             billId: this.state.billId,
-            billTime: this.state.billTime,
+            billTime:this._formatBilltDate(new Date()),
             billStatus: this.state.billStatus,
             deviceName: this.state.deviceName,
             deviceType: this.state.deviceType,
             description: this.state.description,
-            appointment: this.state.appointment,
+            appointment: this._formatAppointmentDate(this.state.appointment),
             organization: this.state.organization,
             phone: this.state.phone,
             address: this.state.address,

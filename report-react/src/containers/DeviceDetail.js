@@ -7,9 +7,9 @@ class DeviceDetail extends Component {
 
     static propTypes = {
         show: PropTypes.bool,
-        index: PropTypes.number,
-        list: PropTypes.arrayOf(PropTypes.object),
+        item: PropTypes.object,
         onClose: PropTypes.func,
+        onDelete: PropTypes.func,
         onBill: PropTypes.func
     }
 
@@ -20,16 +20,23 @@ class DeviceDetail extends Component {
         }
     }
 
+    //点击删除设备
+    handleOnDelete() {
+        if (this.props.onDelete) {
+            this.props.onDelete();
+        }
+    }
+
     //点击立即报修
     handleOnBill(e) {
         if (this.props.onBill) {
-            this.props.onBill(e,this.props.list[this.props.index]);
+            this.props.onBill(e,this.props.item);
         }
     }
 
     render() {
-        if (this.props.show && this.props.index !== -1 ) {
-            const item = this.props.list[this.props.index];
+        if (this.props.show) {
+            const item = this.props.item;
             return(
                 <div id="device-detail">
                     <div className="card">
@@ -72,6 +79,7 @@ class DeviceDetail extends Component {
                         <div className="card-btns">
                             <button id="check-warranty">保修状况</button>
                             <button id="bill-now" onClick={this.handleOnBill.bind(this)}>立即报修</button>
+                            <button id="delete-btn" onClick={this.handleOnDelete.bind(this)}>删除设备</button>
                         </div>
                     </div>
                 <Cover show={this.props.show} onClick={this.handleOnClose.bind(this)}/>

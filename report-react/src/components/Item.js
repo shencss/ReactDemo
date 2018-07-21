@@ -7,10 +7,9 @@ class Item extends Component {
         item: PropTypes.object,
         index: PropTypes.number,
         onCancel: PropTypes.func,
-        onCheck: PropTypes.func
+        onCheck: PropTypes.func,
+        onDelete: PropTypes.func
     }
-
-    //构造函数只在第一次实例化时调用
 
     //点击撤销按钮
     handleOnCancel() {
@@ -21,7 +20,6 @@ class Item extends Component {
 
     //点击删除按钮
     handleOnDelete() {
-        console.log("PP")
         if (this.props.onDelete) {
             this.props.onDelete(this.props.index);
         }
