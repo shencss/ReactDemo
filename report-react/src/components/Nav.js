@@ -10,6 +10,7 @@ class Nav extends Component {
 
     //点击底部导航切换页面
     handleOnClick(e) {
+        console.log(e.target.id)
         if (this.props.onClick) {
             this.props.onClick(e.target.id);
         }
@@ -20,13 +21,19 @@ class Nav extends Component {
             <div className="nav">
                 <ul className="nav-list">
                     <li className="nav-item" style={{'color': this.props.page === 'Bill' ? '#2196F3' : '#AAA'}} 
-                        id="nav-bill" onClick={this.handleOnClick.bind(this)}>我的报单
+                        id="nav-bill" onClick={this.handleOnClick.bind(this)}>
+                        <i className="iconfont" id="nav-bill">&#xe6de;</i>
+					    我的报单
                     </li>
                     <li className="nav-item" style={{'color': this.props.page === 'Device' ? '#2196F3' : '#AAA'}} 
-                        id="nav-device" onClick={this.handleOnClick.bind(this)}>我的设备
+                        id="nav-device" onClick={this.handleOnClick.bind(this)}>
+                        <i className="iconfont" id="nav-device">&#xe64b;</i>
+						我的设备
                     </li>
                     <li className="nav-item" style={{'color': this.props.page === 'Contact' ? '#2196F3' : '#AAA'}} 
-                        id="nav-contact" onClick={this.handleOnClick.bind(this)}>联系我们
+                        id="nav-contact" onClick={this.handleOnClick.bind(this)}>
+                        <i className="iconfont" id="nav-contact">&#xe704;</i>
+						联系我们
                     </li>
                 </ul>
 		    </div>
