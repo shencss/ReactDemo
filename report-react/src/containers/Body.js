@@ -6,7 +6,7 @@ import Prompt from '../components/Prompt'
 import BillDetail from '../containers/BillDetail';
 import DeviceDetail from '../containers/DeviceDetail';
 import { connect } from 'react-redux';
-import { addBillItem, deleteBillItem, cancelBillItem } from '../reducers/reducer';
+import { addBillItem, deleteBillItem, cancelBillItem, deleteDeviceItem } from '../reducers/reducer';
 import PropTypes from 'prop-types';
 
 class Body extends Component {
@@ -53,6 +53,13 @@ class Body extends Component {
         localStorage.setItem('report_data', JSON.stringify(data));
     }
 
+    //在localstorage中删除一个设备
+    _deleteDeviceItem(index) {
+        const data = JSON.parse(localStorage.report_data);
+        data.deviceList.splice(index, 1);
+        localStorage.setItem('report_data', JSON.stringify(data));
+    }
+
 
     //处理报单的提交
     handleOnSubmit(billItem) {
@@ -77,6 +84,7 @@ class Body extends Component {
 
     //在列表项点击删除
     handleOnDelete(index) {
+        console.log("II")
         this.setState({
             index: index,
             type: 'delete',
@@ -117,9 +125,16 @@ class Body extends Component {
      //在提示中点击确认
      handleOnConfirm() {
         if (this.state.type === 'delete') {
-            this._deleteBillItem(this.state.index);
-            if (this.props.onDeleteBillItem) {   
-                this.props.onDeleteBillItem(this.state.index);
+            if (this.props.page === 'Bill') {
+                this._deleteBillItem(this.state.index);
+                if (this.props.onDeleteBillItem) {   
+                    this.props.onDeleteBillItem(this.state.index);
+                }
+            } else if (this.props.page === 'Device') {
+                this._deleteDeviceItem(this.state.index);
+                if (this.props.onDeleteDeviceItem) {   
+                    this.props.onDeleteDeviceItem(this.state.index);
+                }
             }
         } else if (this.state.type === 'cancel') {
             this._cancelBillItem(this.state.index);
@@ -170,6 +185,9 @@ class Body extends Component {
                             <DeviceDetail show={this.state.showDetail} index={this.state.index} list={this.props.deviceList} 
                                 onClose={this.handleOnClose.bind(this)} onBill={this.handleOnBill.bind(this)}
                             />
+                            <Prompt show={this.state.showPrompt} onConfirmClick={this.handleOnConfirm.bind(this)} 
+                                onRecallClick={this.handleOnRecall.bind(this)} onClose={this.handleOnClose.bind(this)}   
+                            />
                         </div>
                         <TakeBill show={this.state.takeBill} page={this.props.page} load={this.state.load}
                             onSubmit={this.handleOnSubmit.bind(this)} onClose={this.handleOnClose.bind(this)} onBill={this.handleOnBill.bind(this)}
@@ -211,6 +229,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         onCancelBillItem: (index) => {
             dispatch(cancelBillItem(index));
+        },
+        onDeleteDeviceItem: (index) => {
+            dispatch(deleteDeviceItem(index));
         }
     }
 }

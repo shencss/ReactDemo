@@ -21,6 +21,7 @@ class Item extends Component {
 
     //点击删除按钮
     handleOnDelete() {
+        console.log("PP")
         if (this.props.onDelete) {
             this.props.onDelete(this.props.index);
         }
@@ -44,7 +45,7 @@ class Item extends Component {
                     <button id="cancel-btn" style={(this.props.item.billId && this.props.item.billStatus !== '已完成' && this.props.item.billStatus !== '已取消')? {} : {'display': 'none'} }
                         onClick={this.handleOnCancel.bind(this)}>撤销
                     </button>
-                    <button id="delete-btn" style={(this.props.item.billId && this.props.item.billStatus === '已取消')? {} : {'display': 'none'} }
+                    <button id="delete-btn" style={(!this.props.item.billId || this.props.item.billStatus === '已取消')? {} : {'display': 'none'} }
                         onClick={this.handleOnDelete.bind(this)}>删除
                     </button>
                 </span>

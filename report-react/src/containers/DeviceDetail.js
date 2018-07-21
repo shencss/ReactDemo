@@ -51,6 +51,14 @@ class DeviceDetail extends Component {
                                         <td>{item.deviceType}</td>
                                     </tr>
                                     <tr>
+                                        <th>设备型号</th>
+                                        <td>{item.model}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>设备厂商</th>
+                                        <td>{item.manufacture}</td>
+                                    </tr>
+                                    <tr>
                                         <th>维修历史</th>
                                         <td>{item.history.length > 0 ? '∨' : '无'}</td>
                                     </tr>

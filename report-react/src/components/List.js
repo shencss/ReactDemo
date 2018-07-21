@@ -19,6 +19,7 @@ class List extends Component {
 
     //点击删除按钮
     handleOnDelete(index) {
+        console.log("OO")
         if (this.props.onDelete) {
             this.props.onDelete(index);
         }

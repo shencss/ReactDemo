@@ -4,12 +4,14 @@ const PAGE = 'PAGE';
 const ADD_BILLITEM = 'ADD_BILLITEM';
 const DELETE_BILLITEM = 'DELETE_BILLITEM';
 const CANCEL_BILLITEM = 'CANCEL_BILLITEM';
+const DELETE_DEVICEITEM = 'DELETE_DEVICEITEM';
 const ADD_FEEDBACK = 'ADD_FEEDBACK';
 
 
 //reducer
 export default function (state = {}, action) {
     const billList = state.billList;
+    const deviceList = state.deviceList;
     switch (action.type) {
         case 'INIT_DATA':
             return { ...action.data }
@@ -29,6 +31,10 @@ export default function (state = {}, action) {
         case 'CANCEL_BILLITEM':
             billList[action.index].billStatus = '已取消';
             return { ...state, billList: [...billList] }
+
+        case 'DELETE_DEVICEITEM':
+            deviceList.splice(action.index, 1);
+            return { ...state, deviceList: [...deviceList]}
 
         case 'ADD_FEEDBACK':
             return
@@ -75,6 +81,13 @@ export const deleteBillItem = (index) => {
 export const cancelBillItem = (index) => {
     return {
         type: CANCEL_BILLITEM,
+        index: index
+    }
+}
+
+export const deleteDeviceItem = (index) => {
+    return {
+        type: DELETE_DEVICEITEM,
         index: index
     }
 }
