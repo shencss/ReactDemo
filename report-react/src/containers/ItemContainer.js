@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Item from '../components/Item';
-import BillDetail from '../containers/BillDetail';
-import DeviceDetail from '../containers/DeviceDetail';
+import BillDetail from '../components/BillDetail';
+import DeviceDetail from '../components/DeviceDetail';
 import Prompt from '../components/Prompt'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';

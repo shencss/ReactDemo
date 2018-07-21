@@ -10,7 +10,6 @@ class Nav extends Component {
 
     //点击底部导航切换页面
     handleOnClick(e) {
-        console.log(e.target.id)
         if (this.props.onClick) {
             this.props.onClick(e.target.id);
         }
