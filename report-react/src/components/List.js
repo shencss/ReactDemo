@@ -17,6 +17,13 @@ class List extends Component {
         }
     }
 
+    //点击删除按钮
+    handleOnDelete(index) {
+        if (this.props.onDelete) {
+            this.props.onDelete(index);
+        }
+    }
+
     //点击查看按钮
     handleOnCheck(index) {
         if (this.props.onCheck) {
@@ -27,7 +34,9 @@ class List extends Component {
     render() {
         return(
             <ul className="list">
-                {this.props.list.map((item, i) => <Item item={item} key={i} index={i} onCancel={this.handleOnCancel.bind(this)} onCheck={this.handleOnCheck.bind(this)} />)}
+                {this.props.list.map((item, i) => <Item item={item} key={i} index={i} 
+                    onCancel={this.handleOnCancel.bind(this)} onCheck={this.handleOnCheck.bind(this)} onDelete={this.handleOnDelete.bind(this)} />)
+                }
             </ul>
         );
     }

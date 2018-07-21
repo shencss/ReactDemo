@@ -23,7 +23,6 @@ class DeviceDetail extends Component {
     //点击立即报修
     handleOnBill(e) {
         if (this.props.onBill) {
-            console.log(this.props.list[this.props.index])
             this.props.onBill(e,this.props.list[this.props.index]);
         }
     }
@@ -57,8 +56,8 @@ class DeviceDetail extends Component {
                                     </tr>
                                 </tbody>
                             </table>
-                            <div>
-                                {item.history.map((item, i) => <RepairHistory historyItem={item} key={i} />)}
+                            <div id="repair-history">
+                                {item.history.map((item, i) => <RepairHistory history={item} key={i} />)}
                             </div>                       
                         </div>
                         <hr/>

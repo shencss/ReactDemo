@@ -33,7 +33,6 @@ class TakeBill extends Component {
  
     componentWillReceiveProps(props) {  
         //再次/立即报修时将信息加载尽来 
-        console.log(props.load)
         if (props.load) {
             this.setState({
                 deviceName: props.load.deviceName,
@@ -113,9 +112,9 @@ class TakeBill extends Component {
         return(
             <div id="take-bill">
                 {/* 为了提交form时不刷新*/}
-                <iframe name='my-frame' title="frame" style={{'display': 'none'}}></iframe>
-                <form id="bill-form" target="my-frame" style={this.props.show? {} : {'display': 'none'}}
-                    >
+                <iframe name='bill-frame' title="frame" style={{'display': 'none'}}></iframe>
+                <form id="bill-form" target="bill-frame" style={this.props.show? {} : {'display': 'none'}}
+                    onSubmit={this.handleOnSubmit.bind(this)}>
                     <span id="close-btn" onClick={this.handleOnClose.bind(this)}>X</span>
                     <span className="form-title">请填写报单信息</span>
                     <hr/>
@@ -144,9 +143,9 @@ class TakeBill extends Component {
                     <label htmlFor="organization">维修公司: </label>
                     <select name="organization" value={this.state.organization}
                         onChange={this.handleOnChange.bind(this)}>
-                        <option value="A公司">A公司</option>
-                        <option value="B公司">B公司</option>
-                        <option value="C公司">C公司</option>
+                        <option value="广州飞元维修公司">广州飞元维修公司</option>
+                        <option value="广州葆力维修公司">广州葆力维修公司</option>
+                        <option value="广州峰星维修公司">广州峰星维修公司</option>
                     </select><br/>
                     <label htmlFor="phone">联系电话: </label>
                     <input type="phone" name="phone" placeholder="请输入联系电话" value={this.state.phone || ''} 
@@ -160,7 +159,7 @@ class TakeBill extends Component {
                     <textarea name="remark" cols="23" rows="4" placeholder="请输入备注信息"value={this.state.remark}
                         onChange={this.handleOnChange.bind(this)}>
                     </textarea><br/>
-                    <input type="submit" id="bill-submit"onClick={this.handleOnSubmit.bind(this)}/>
+                    <input type="submit" id="bill-submit"/>
 			    </form>
                 <Cover show={this.props.show} onClick={this.handleOnClose.bind(this)} />
                 <button id="take-bill-now"

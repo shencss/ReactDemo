@@ -4,32 +4,32 @@ import PropTypes from 'prop-types';
 class RepairHistory extends Component {
 
     static propTypes = {
-        historyItem: PropTypes.object
+        history: PropTypes.object
     }
 
     render() {
         return(
-            <table id="repair-history">
+            <table id="repair-history-table">
                 <tbody>
                     <tr>
                         <th>报单编号</th>
-                        <td>{this.props.historyItem.billId}</td>
+                        <td>{this.props.history.billId}</td>
                     </tr>               
                     <tr>
                         <th>维修时间</th>
-                        <td>{this.props.historyItem.time}</td>
+                        <td>{this.props.history.time}</td>
                     </tr>                    
                     <tr>
                         <th>维修机构</th>
-                        <td>{this.props.historyItem.organization}</td>
+                        <td>{this.props.history.organization}</td>
                     </tr>                   
                     <tr>
                         <th>故障描述</th>
-                        <td>{this.props.historyItem.description}</td>
+                        <td>{this.props.history.description}</td>
                     </tr>                   
                     <tr>
                         <th>维修费用</th>
-                        <td>{this.props.historyItem.money}</td>
+                        <td>{this.props.history.money}</td>
                     </tr>
                 </tbody> 
             </table>

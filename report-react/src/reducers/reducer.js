@@ -3,6 +3,8 @@ const INIT_DATA = 'INIT_DATA';
 const PAGE = 'PAGE';
 const ADD_BILLITEM = 'ADD_BILLITEM';
 const DELETE_BILLITEM = 'DELETE_BILLITEM';
+const CANCEL_BILLITEM = 'CANCEL_BILLITEM';
+const ADD_FEEDBACK = 'ADD_FEEDBACK';
 
 
 //reducer
@@ -23,6 +25,13 @@ export default function (state = {}, action) {
             billList.splice(action.index, 1);
             //必须是[...billList]
             return { ...state, billList: [...billList] }
+
+        case 'CANCEL_BILLITEM':
+            billList[action.index].billStatus = '已取消';
+            return { ...state, billList: [...billList] }
+
+        case 'ADD_FEEDBACK':
+            return
 
         default:
             return state;
@@ -60,6 +69,20 @@ export const deleteBillItem = (index) => {
     return {
         type: DELETE_BILLITEM,
         index: index
+    }
+}
+
+export const cancelBillItem = (index) => {
+    return {
+        type: CANCEL_BILLITEM,
+        index: index
+    }
+}
+
+export const addFeedback = (feedback) => {
+    return {
+        type: ADD_FEEDBACK,
+        feedback: feedback
     }
 }
 

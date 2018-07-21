@@ -110,7 +110,7 @@ hr {
 	color: #2196F3;
 }
 .table-container {
-	max-height: 350px;
+	max-height: 360px;
 	overflow-y: scroll;
 }
 .card table {
@@ -317,6 +317,10 @@ body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrol
 	border: .5px solid #ff9966;
 	color: #ff9966;
 }
+#delete-btn {
+	border: .5px solid #ff9966;
+	color: #ff9966;
+}
 .item-time {
 	font-weight: 100;
 	font-size: 1px;
@@ -386,7 +390,7 @@ body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrol
 #contact-service {
 	color: #a0cf67;
 }
-#check-finish {
+#check-report{
 	color: #2196F3;
 }
 #bill-again {
@@ -406,7 +410,18 @@ body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrol
 }
 
 /*** RepairHistory ***/
-#repair-history {
+#repair-history-table {
+	width: 85%;
+	font-size: 12px;
+	background-color: #edf0f1;
+	padding: 0;
+	border-radius: 4px;
+	margin-bottom: 10px;
+	border: 1px solid #2196F3;	
+}
+
+/*** BillReport ***/
+#repair-detail-table {
 	width: 85%;
 	font-size: 12px;
 	background-color: #edf0f1;
@@ -414,8 +429,9 @@ body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrol
 	border-radius: 4px;
 	margin-bottom: 10px;
 	border: 1px solid #2196F3;
-	
 }
-#repair-history th, #repair-history td {
-	margin: 0;
+
+/*** BillReport ***/
+#feedback-btn {
+	color: #a0cf67;
 }

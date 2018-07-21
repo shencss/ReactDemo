@@ -19,6 +19,13 @@ class Item extends Component {
         }
     }
 
+    //点击删除按钮
+    handleOnDelete() {
+        if (this.props.onDelete) {
+            this.props.onDelete(this.props.index);
+        }
+    }
+
     //点击查看按钮
     handleOnCheck() {
         if (this.props.onCheck) {
@@ -34,8 +41,11 @@ class Item extends Component {
                 <span className="item-time">{this.props.item.billId ? this.props.item.deviceName + ' '+ this.props.item.billTime.substr(5) : '设备编号:'+this.props.item.deviceId}</span>
                 <span className="control">
                     <button id="check-btn" onClick={this.handleOnCheck.bind(this)}>查看</button>
-                    <button id="cancel-btn" style={(this.props.item.billId && this.props.item.billStatus !== '已完成')? {} : {'display': 'none'} }
+                    <button id="cancel-btn" style={(this.props.item.billId && this.props.item.billStatus !== '已完成' && this.props.item.billStatus !== '已取消')? {} : {'display': 'none'} }
                         onClick={this.handleOnCancel.bind(this)}>撤销
+                    </button>
+                    <button id="delete-btn" style={(this.props.item.billId && this.props.item.billStatus === '已取消')? {} : {'display': 'none'} }
+                        onClick={this.handleOnDelete.bind(this)}>删除
                     </button>
                 </span>
             </li>
