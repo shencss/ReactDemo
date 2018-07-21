@@ -10,7 +10,7 @@ class DeviceDetail extends Component {
         item: PropTypes.object,
         onClose: PropTypes.func,
         onDelete: PropTypes.func,
-        onBill: PropTypes.func
+        onAddBill: PropTypes.func
     }
 
     //点击遮布或关闭按钮
@@ -28,9 +28,10 @@ class DeviceDetail extends Component {
     }
 
     //点击立即报修
-    handleOnBill(e) {
-        if (this.props.onBill) {
-            this.props.onBill(e,this.props.item);
+    handleOnAddBill(e) {
+        console.log("PPP")
+        if (this.props.onAddBill) {
+            this.props.onAddBill(e,this.props.item);
         }
     }
 
@@ -40,7 +41,7 @@ class DeviceDetail extends Component {
             return(
                 <div id="device-detail">
                     <div className="card">
-                        <span className="iconfont" id="close-btn" onClick={this.handleOnClose.bind(this)}>X</span>
+                        <span className="iconfont" id="close-btn" onClick={this.handleOnClose.bind(this)}>&#xe6df;</span>
                         <span className="card-title">设备详细信息</span><hr/>
                         <div className="table-container">
                             <table>
@@ -78,7 +79,7 @@ class DeviceDetail extends Component {
                         <hr/>
                         <div className="card-btns">
                             <button id="check-warranty">保修状况</button>
-                            <button id="bill-now" onClick={this.handleOnBill.bind(this)}>立即报修</button>
+                            <button id="bill-now" onClick={this.handleOnAddBill.bind(this)}>立即报修</button>
                             <button id="delete-btn" onClick={this.handleOnDelete.bind(this)}>删除设备</button>
                         </div>
                     </div>

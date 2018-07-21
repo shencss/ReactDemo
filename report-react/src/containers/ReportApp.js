@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from '../components/Header';
+import HeaderContainer from '../containers/HeaderContainer';
 import Nav from '../components/Nav';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -17,7 +17,7 @@ class ReportApp extends Component {
 
     //调用_loadData()初始化数据
     componentWillMount() {
-         localStorage.setItem('report_data',JSON.stringify({"page":"Bill","deviceList":[{"deviceId":"85FG30UI","deviceStatus":"已维修","deviceName":"联想笔记本","deviceType":"电脑","model":"B50","manufacture":"联想(中国)有限公司","history":[{"billId":"EBE7344E","time":"2018年7月5日10:58","organization":"A公司","money":"78.00元","description":"无法正常开机"}]}],
+         localStorage.setItem('report_data',JSON.stringify({"page":"Bill","deviceList":[{"deviceId":"H9SD78TR","deviceStatus":"入库中","deviceName":"美的智能空调","deviceType":"空调","model":"MD301","manufacture":"美的(中国)有限公司","history":[]},{"deviceId":"85FG30UI","deviceStatus":"已维修","deviceName":"联想笔记本","deviceType":"电脑","model":"B50","manufacture":"联想(中国)有限公司","history":[{"billId":"EBE7344E","time":"2018年7月5日10:58","organization":"A公司","money":"78.00元","description":"无法正常开机"}]}],
            "billList":[
                 {"billId":"F6C7F2FA","billTime":"2018年7月5日10:53","billStatus":"受理中","deviceName":"惠普显示屏","deviceType":"配件","description":"颜色无法正常显示","appointment":"2018年7月6日13:00","organization":"广州飞元维修公司","phone":"13033333333","address":"华南理工大学B8学院楼102","remark":"请尽快上门维修","report":{},"feedback": []},
                 {"billId":"OP56M23","billTime":"2018年7月4日11:54","billStatus":"派单中","deviceName":"海尔冰箱","deviceType":"冰箱","description":"冰箱开门内灯不亮","appointment":"2018年7月6日13:00","organization":"广州飞元维修公司","phone":"13022222222","address":"华南理工大学B8学院楼102","remark":"这个灯是时好时坏","report":{},"feedback": []},
@@ -36,18 +36,18 @@ class ReportApp extends Component {
     }
 
     //点击底部导航切换页面
-    handleOnNavClick(id) {
-        if (this.props.onNavClick) {
-            this.props.onNavClick(id);
+    handleOnNav(id) {
+        if (this.props.onNav) {
+            this.props.onNav(id);
         }
     }
 
     render() {
         return(
             <div id="report-app">
-                <Header page={this.props.page} />
+                <HeaderContainer />
                 <Body />
-                <Nav page={this.props.page} onClick={this.handleOnNavClick.bind(this)} />
+                <Nav page={this.props.page} onNav={this.handleOnNav.bind(this)}/>
             </div>
         );
     }
@@ -64,7 +64,7 @@ const mapDispatchToProps = (dispatch) => {
         initData: (data) => {
             dispatch(init(data));
         },
-        onNavClick: (id) => {
+        onNav: (id) => {
             dispatch(paging(id));
         }
     }

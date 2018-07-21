@@ -13,7 +13,7 @@ class ItemContainer extends Component {
         page: PropTypes.string,
         item: PropTypes.object,
         index: PropTypes.number,
-        onBill: PropTypes.func,
+        onAddBill: PropTypes.func,
         onCancelBillItem: PropTypes.func,
         onDeleteBillItem: PropTypes.func,
         onDeleteDeviceItem: PropTypes.func
@@ -110,9 +110,10 @@ class ItemContainer extends Component {
     }
 
     //在详细信息中点击再次/马上报修
-    handleOnBill(e,item) {
-        if (this.props.onBill) {
-            this.props.onBill(e,item);
+    handleOnAddBill(e,item) {
+        console.log("OOO")
+        if (this.props.onAddBill) {
+            this.props.onAddBill(e,item);
         }
         this.setState({
             showDetail: false
@@ -127,7 +128,7 @@ class ItemContainer extends Component {
                         onCancel={this.handleOnCancel.bind(this)} onDelete={this.handleOnDelete.bind(this)}    
                     />
                     <BillDetail show={this.state.showDetail} item={this.props.item} onDelete={this.handleOnDelete.bind(this)}
-                        onClose={this.handleOnClose.bind(this)} onCancel={this.handleOnCancel.bind(this)} onBill={this.handleOnBill.bind(this)}
+                        onClose={this.handleOnClose.bind(this)} onCancel={this.handleOnCancel.bind(this)} onAddBill={this.handleOnAddBill.bind(this)}
                     />
                     <Prompt show={this.state.showPrompt} onConfirm={this.handleOnConfirm.bind(this)} onClose={this.handleOnClose.bind(this)}  />
                 </div>
@@ -139,7 +140,7 @@ class ItemContainer extends Component {
                          onDelete={this.handleOnDelete.bind(this)}    
                     />
                     <DeviceDetail show={this.state.showDetail} item={this.props.item} onDelete={this.handleOnDelete.bind(this)}
-                        onClose={this.handleOnClose.bind(this)} onBill={this.handleOnBill.bind(this)}
+                        onClose={this.handleOnClose.bind(this)} onAddBill={this.handleOnAddBill.bind(this)}
                     />
                     <Prompt show={this.state.showPrompt} onConfirm={this.handleOnConfirm.bind(this)} onClose={this.handleOnClose.bind(this)}  />
                 </div>

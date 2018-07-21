@@ -79,6 +79,7 @@ hr {
 	height: 30px;
 	color: #2196F3;
 	cursor: pointer;
+	transform: rotate(45deg);
 }
 /*** 遮布 ***/
 .cover {

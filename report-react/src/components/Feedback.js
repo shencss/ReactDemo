@@ -54,7 +54,7 @@ class Feedback extends Component {
             <div id="feedback">
                 <iframe name='feedback-frame' title="frame" style={{'display': 'none'}}></iframe>
                 <form action="" className="feedback-form" target="feedback-frame" onSubmit={this.handleOnSubmit.bind(this)}>
-                    <span className="iconfont" id="close-btn" onClick={this.handleOnClose.bind(this)}>X</span>
+                    <span className="iconfont" id="close-btn" onClick={this.handleOnClose.bind(this)}>&#xe6df;</span>
                     <span className="form-title">感谢您的积极反馈</span><hr/>
                     <label htmlFor="feedback">反馈: </label>
                     <textarea name="feedback" cols="23" rows="6" placeholder="请输入反馈" required="required"

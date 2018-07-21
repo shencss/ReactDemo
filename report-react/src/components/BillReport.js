@@ -35,7 +35,7 @@ class BillReprot extends Component {
             return(
                 <div id="bill-report">
                 <div className="card">
-                        <span className="iconfont" id="close-btn" onClick={this.handleOnClose.bind(this)}>X</span>
+                        <span className="iconfont" id="close-btn" onClick={this.handleOnClose.bind(this)}>&#xe6df;</span>
                         <span className="card-title">完工报告信息</span>
                         <hr/>
                         <div className="table-container">

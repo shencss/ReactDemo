@@ -10,7 +10,7 @@ class TakeBill extends Component {
         load: PropTypes.object,
         onClose: PropTypes.func,
         onSubmit: PropTypes.func,
-        onBill: PropTypes.func
+        onAddBill: PropTypes.func
     }
 
     constructor() {
@@ -76,12 +76,12 @@ class TakeBill extends Component {
     }
 
     //点击悬浮按钮报修
-    handleOnBill(e,load = {}) {
+    handleOnAddBill(e,load = {}) {
         this.setState({
             ...load
         })
-        if (this.props.onBill) {
-            this.props.onBill();
+        if (this.props.onAddBill) {
+            this.props.onAddBill();
         }
     }
 
@@ -128,7 +128,7 @@ class TakeBill extends Component {
                 <iframe name='bill-frame' title="frame" style={{'display': 'none'}}></iframe>
                 <form id="bill-form" target="bill-frame" style={this.props.show? {} : {'display': 'none'}}
                     onSubmit={this.handleOnSubmit.bind(this)}>
-                    <span id="close-btn" onClick={this.handleOnClose.bind(this)}>X</span>
+                    <span className="iconfont" id="close-btn" onClick={this.handleOnClose.bind(this)}>&#xe6df;</span>
                     <span className="form-title">请填写报单信息</span>
                     <hr/>
                     <label htmlFor="deviceName">设备名称: </label>
@@ -177,7 +177,7 @@ class TakeBill extends Component {
                 <Cover show={this.props.show} onClick={this.handleOnClose.bind(this)} />
                 <button id="take-bill-now"
                     style={this.props.page === 'Contact'? {'bottom': '-10px'} : {}} 
-                    onClick={this.handleOnBill.bind(this)}>报修
+                    onClick={this.handleOnAddBill.bind(this)}>报修
                 </button>
             </div>
         );

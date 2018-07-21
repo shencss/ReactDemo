@@ -4,9 +4,17 @@ import PropTypes from 'prop-types';
 class Header extends Component {
     
     static propTypes = {
-        page: PropTypes.string
+        page: PropTypes.string,
+        onAddDevice: PropTypes.func
     }
 
+    //点击右上角的+号添加设备
+    handleOnAddDevice() {
+        if (this.props.onAddDevice) {
+            this.props.onAddDevice();
+        }
+    }
+    
     render() {
         let title = '';
         let i = '';
@@ -17,7 +25,7 @@ class Header extends Component {
                 break;
             case 'Device':
                 title = '我的设备';
-                i = <i className="iconfont" id="add-btn">&#xe6df;</i>;
+                i = <i className="iconfont" id="add-btn" onClick={this.handleOnAddDevice.bind(this)}>&#xe6df;</i>;
                 break;
             case 'Contact':
                 title = '联系我们';

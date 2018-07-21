@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import TakeBill from '../components/TakeBill';
+import AddBill from '../components/AddBill';
 import List from '../components/List';
 import Contact from '../components/Contact';
 import { connect } from 'react-redux';
 import { addBillItem } from '../reducers/reducer';
 import PropTypes from 'prop-types';
+import AddDevice from '../components/AddDevice';
 
 class Body extends Component {
 
@@ -18,7 +19,8 @@ class Body extends Component {
     constructor() {
         super();
         this.state = {
-            takeBill: false,
+            addBill: false,
+            addDevice: false,
             load: {}
         }
     }
@@ -30,45 +32,60 @@ class Body extends Component {
         localStorage.setItem('report_data', JSON.stringify(data));
     }
 
-    //处理报单的提交
-    handleOnSubmit(billItem) {
-        this._addBillItem(billItem);
-        if (this.props.onAddBillItem) {
-            this.props.onAddBillItem(billItem);
-        }
+    //点击报修或在详细信息中点击再次/马上报修
+    handleOnAddBill(e,load) {
+        console.log("KKK")
         this.setState({
-            takeBill: false
-        });
-    }
-
-    //在详细信息中点击再次/马上报修
-    handleOnBill(e,load) {
-        this.setState({
-            takeBill: true,
+            addBill: true,
             //load是为了实现再次/立即报修时将信息load进表单中
             load: load
         });
     }
 
-    //点击遮布或者关闭按钮或点击取消
-    handleOnClose() {
+    //处理报单的提交
+    handleOnSubmitBill(billItem) {
+        this._addBillItem(billItem);
+        if (this.props.onAddBillItem) {
+            this.props.onAddBillItem(billItem);
+        }
         this.setState({
-            takeBill: false,
-            load: {}
+            addBill: false
         });
     }
 
-    
+    //点击右上角+号添加按钮
+    handleOnAddDevice() {
+        this.setState({
+            addDevice: true
+        })
+    }
+
+    //处理设备的添加
+    handleOnSubmitDevice(deviceItem) {
+        this._addDeviceItem(deviceItem);
+        if (this.props.onAddDeviceItem) {
+            this.props.onAddDeviceItem(deviceItem);
+        }
+    }
+
+    //点击遮布或者关闭按钮或点击取消
+    handleOnClose() {
+        this.setState({
+            addBill: false,
+            addDevice: false,
+            load: {}
+        });
+    }
 
     render() {
         if (this.props.page !== 'Contact') {
             return(
                 <div className="body">
-                    <div id={this.props.page === 'Bill' ? "bill-page" : 'device-page'}>
-                        <List list={this.props.page === 'Bill' ? this.props.billList : this.props.deviceList} onBill={this.handleOnBill.bind(this)} />
+                    <div id={this.props.page === 'Bill' ? "bill-page" : "device-page"}>
+                        <List list={this.props.page === 'Bill' ? this.props.billList : this.props.deviceList} onAddBill={this.handleOnAddBill.bind(this)} />
                     </div>
-                    <TakeBill show={this.state.takeBill} page={this.props.page} load={this.state.load}
-                        onSubmit={this.handleOnSubmit.bind(this)} onClose={this.handleOnClose.bind(this)} onBill={this.handleOnBill.bind(this)}
+                    <AddBill show={this.state.addBill} load={this.state.load}
+                        onSubmit={this.handleOnSubmitBill.bind(this)} onClose={this.handleOnClose.bind(this)} onAddBill={this.handleOnAddBill.bind(this)}
                     />
                 </div>
             );
@@ -78,11 +95,10 @@ class Body extends Component {
                     <div id="contact-page">
                         <Contact />
                     </div>
-                    <TakeBill page={this.props.page}/>
+                    <AddBill page={this.props.page}/>
                 </div>
             );
         }
-
     }
 }
 

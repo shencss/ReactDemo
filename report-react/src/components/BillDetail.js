@@ -11,7 +11,7 @@ class BillDetail extends Component {
         onClose: PropTypes.func,
         onCancel: PropTypes.func,
         onDelete: PropTypes.func,
-        onBill: PropTypes.func
+        onAddBill: PropTypes.func
     }
     
     constructor() {
@@ -39,10 +39,10 @@ class BillDetail extends Component {
     }
 
     //点击再次报修
-    handleOnBill(e) {
-        if (this.props.onBill) {
+    handleOnAddBill(e) {
+        if (this.props.onAddBill) {
             //this.props.item是为了将这个报单的信息传给表单
-            this.props.onBill(e,this.props.item);
+            this.props.onAddBill(e,this.props.item);
         }
     }
 
@@ -60,7 +60,8 @@ class BillDetail extends Component {
                 return(
                     <div id="bill-detail">
                         <div className="card">
-                            <span className="iconfont" id="close-btn" onClick={this.handleOnClose.bind(this)}>X</span>
+                        
+                            <span className="iconfont" id="close-btn" onClick={this.handleOnClose.bind(this)}>&#xe6df;</span>
                             <span className="card-title">订单详细信息</span>
                             <hr/>
                             <div className="table-container">
@@ -117,7 +118,7 @@ class BillDetail extends Component {
                             <hr/>
                             <div className="card-btns">
                                 <button id="bill-again" style={item.billStatus === '已完成' ? {} : {'display': 'none'}}
-                                    onClick={this.handleOnBill.bind(this)}>再次报修
+                                    onClick={this.handleOnAddBill.bind(this)}>再次报修
                                 </button>
                                 <button id="contact-service">联系客服</button>
                                 <button id="cancel-bill" 

@@ -4,6 +4,7 @@ const PAGE = 'PAGE';
 const ADD_BILLITEM = 'ADD_BILLITEM';
 const DELETE_BILLITEM = 'DELETE_BILLITEM';
 const CANCEL_BILLITEM = 'CANCEL_BILLITEM';
+const ADD_DEVICEITEM = 'ADD_DEVICEITEM';
 const DELETE_DEVICEITEM = 'DELETE_DEVICEITEM';
 const ADD_FEEDBACK = 'ADD_FEEDBACK';
 
@@ -20,7 +21,7 @@ export default function (state = {}, action) {
             return { ...state, page: action.page }
 
         case 'ADD_BILLITEM':
-            billList.unshift(action.billItem);
+            billList.unshift(action.item);
             return { ...state, billList: [...billList] }
 
         case 'DELETE_BILLITEM':
@@ -31,6 +32,10 @@ export default function (state = {}, action) {
         case 'CANCEL_BILLITEM':
             billList[action.index].billStatus = '已取消';
             return { ...state, billList: [...billList] }
+
+        case 'ADD_DEVICEITEM':
+            deviceList.unshift(action.item);
+            return { ...state, deviceList: [...deviceList] }
 
         case 'DELETE_DEVICEITEM':
             deviceList.splice(action.index, 1);
@@ -67,7 +72,7 @@ export const paging = (id) => {
 export const addBillItem = (billItem) => {
     return {
         type: ADD_BILLITEM,
-        billItem: billItem
+        item: billItem
     }
 }
 
@@ -82,6 +87,13 @@ export const cancelBillItem = (index) => {
     return {
         type: CANCEL_BILLITEM,
         index: index
+    }
+}
+
+export const addDeviceItem = (deviceItem) => {
+    return {
+        type: ADD_DEVICEITEM,
+        item: deviceItem
     }
 }
 
