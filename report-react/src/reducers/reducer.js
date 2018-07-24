@@ -7,12 +7,14 @@ const CANCEL_BILLITEM = 'CANCEL_BILLITEM';
 const ADD_DEVICEITEM = 'ADD_DEVICEITEM';
 const DELETE_DEVICEITEM = 'DELETE_DEVICEITEM';
 const ADD_FEEDBACK = 'ADD_FEEDBACK';
+const ADD_SUGGESTION = 'ADD_SUGGESTION';
 
 
 //reducer
 export default function (state = {}, action) {
     const billList = state.billList;
     const deviceList = state.deviceList;
+    const suggestions = state.suggestions;
     switch (action.type) {
         case 'INIT_DATA':
             return { ...action.data }
@@ -39,23 +41,30 @@ export default function (state = {}, action) {
 
         case 'DELETE_DEVICEITEM':
             deviceList.splice(action.index, 1);
-            return { ...state, deviceList: [...deviceList]}
+            return { ...state, deviceList: [...deviceList] }
 
         case 'ADD_FEEDBACK':
-            return
+            billList[action.index].feedbacks.push(action.feedback);
+            return { ...state, billList: [...billList] } 
+
+        case 'ADD_SUGGESTION':
+            suggestions.push(action.suggestion);
+            return { ...state, suggestions: suggestions}
 
         default:
             return state;
     }
 }
 
+//初始化数据
 export const init = (data) => {
     return {
         type: INIT_DATA,
-        data: data
+        data
     }
 }
 
+//切换页面
 export const paging = (id) => {
     switch (id) {
         case 'nav-bill':
@@ -69,45 +78,60 @@ export const paging = (id) => {
     }
 }
 
-export const addBillItem = (billItem) => {
+//添加报单
+export const addBillItem = (item) => {
     return {
         type: ADD_BILLITEM,
-        item: billItem
+        item
     }
 }
 
+//删除报单
 export const deleteBillItem = (index) => {
     return {
         type: DELETE_BILLITEM,
-        index: index
+        index
     }
 }
 
+//撤销报单
 export const cancelBillItem = (index) => {
     return {
         type: CANCEL_BILLITEM,
-        index: index
+        index
     }
 }
 
-export const addDeviceItem = (deviceItem) => {
+//添加设备
+export const addDeviceItem = (item) => {
     return {
         type: ADD_DEVICEITEM,
-        item: deviceItem
+        item
     }
 }
 
+//删除设备
 export const deleteDeviceItem = (index) => {
     return {
         type: DELETE_DEVICEITEM,
-        index: index
+        index
     }
 }
 
-export const addFeedback = (feedback) => {
+//添加反馈
+export const addFeedback = (index,feedback) => {
     return {
         type: ADD_FEEDBACK,
-        feedback: feedback
+        index,
+        feedback,
+    }
+}
+
+//添加投诉或建议
+export const addSuggestion = (suggestion) => {
+    return {
+        type: ADD_SUGGESTION,
+        suggestion
     }
 }
 

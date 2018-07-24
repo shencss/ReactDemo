@@ -38,6 +38,13 @@ class BillDetail extends Component {
         }
     }
 
+    //点击删除报单
+    handleOnDelete() {
+        if (this.props.onDelete) {
+            this.props.onDelete();
+        }
+    }
+
     //点击再次报修
     handleOnAddBill(e) {
         if (this.props.onAddBill) {
@@ -117,12 +124,16 @@ class BillDetail extends Component {
                             </div>
                             <hr/>
                             <div className="card-btns">
-                                <button id="bill-again" style={item.billStatus === '已完成' ? {} : {'display': 'none'}}
+                                <button id="bill-again" style={(item.billStatus === '已完成' || item.billStatus === '已取消')? {} : {'display': 'none'}}
                                     onClick={this.handleOnAddBill.bind(this)}>再次报修
                                 </button>
                                 <button id="contact-service">联系客服</button>
                                 <button id="cancel-bill" 
-                                    style={item.billStatus === '已完成' ? {'display': 'none'} : {}}
+                                    style={item.billStatus === '已取消' ? {} : {'display': 'none'}}
+                                    onClick={this.handleOnDelete.bind(this)}>删除报单
+                                </button>
+                                <button id="cancel-bill" 
+                                    style={(item.billStatus !== '已取消' && item.billStatus !== '已完成') ? {} : {'display': 'none'}}
                                     onClick={this.handleOnCancel.bind(this)}>撤销报单
                                 </button>
                                 <button id="check-report" style={item.billStatus === '已完成' ? {} : {'display': 'none'}}
@@ -136,7 +147,7 @@ class BillDetail extends Component {
             } else {
                 return(
                     <div id="bill-detail">
-                        <BillReport item={this.props.item} onClose={this.handleOnClose.bind(this)}/>
+                        <BillReport index={this.props.index} item={this.props.item} onClose={this.handleOnClose.bind(this)}/>
                         <Cover show={this.props.show} onClick={this.handleOnClose.bind(this)} />
                     </div>
                 )

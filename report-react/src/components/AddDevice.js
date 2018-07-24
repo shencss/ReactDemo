@@ -43,7 +43,8 @@ class AddDevice extends Component {
             deviceType: this.state.type,
             model: this.state.model,
             manufacture: this.state.manufacture,
-            history: []
+            history: [],
+            components: []
         }
         console.log(deviceItem);
         if (this.props.onSubmit) {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Feedback from './Feedback';
+import FeedbackContainer from '../containers/FeedbackContainer';
 
 class BillReprot extends Component {
 
@@ -34,7 +34,7 @@ class BillReprot extends Component {
         if (!this.state.goFeedback) {
             return(
                 <div id="bill-report">
-                <div className="card">
+                    <div className="card">
                         <span className="iconfont" id="close-btn" onClick={this.handleOnClose.bind(this)}>&#xe6df;</span>
                         <span className="card-title">完工报告信息</span>
                         <hr/>
@@ -89,13 +89,16 @@ class BillReprot extends Component {
                         <hr/>
                         <div className="card-btns">
                             <button id="feedback-btn" onClick={this.handleOnFeedback.bind(this)}>我要反馈</button>
-                            
                         </div>	
                     </div>
                 </div>
             );
         } else {
-            return <Feedback onClose={this.handleOnClose.bind(this)} />
+            return(
+                <div id="bill-report">
+                    <FeedbackContainer index={this.props.index} onClose={this.handleOnClose.bind(this)} />
+                </div>
+            );
         }
     }
 }

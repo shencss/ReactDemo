@@ -5,7 +5,7 @@ class Nav extends Component {
 
     static propTypes = {
         page: PropTypes.string,
-        onClick: PropTypes.func
+        onNav: PropTypes.func
     }
 
     //点击底部导航切换页面

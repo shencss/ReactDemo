@@ -340,15 +340,14 @@ body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrol
 
 /*** Contact ***/
 #contact {
-	position: fixed;
+	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
 	width: 100%;
 	text-align: center;
 	font-size: 16px;
-	text-align: center;
 }
-#service,#complaints,#company{
+#service,#suggestion,#company{
 	margin: 20px auto;
 	background-color: #FFF;
 	width: 80%;
@@ -362,7 +361,7 @@ body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrol
 #service {
 	color: #a0cf67;
 }
-#complaints {
+#suggestion {
 	color: #ff9966;
 }
 #company {
@@ -416,14 +415,15 @@ body::-webkit-scrollbar,.body::-webkit-scrollbar,.table-container::-webkit-scrol
 }
 
 /*** RepairHistory ***/
-#repair-history-table {
+#repair-history-table, #device-warranty-table, #company-information-table {
 	width: 85%;
 	font-size: 12px;
 	background-color: #edf0f1;
 	padding: 0;
 	border-radius: 4px;
 	margin-bottom: 10px;
-	border: 1px solid #2196F3;	
+	border: 1px solid #2196F3;
+	overflow: scroll;	
 }
 
 /*** BillReport ***/

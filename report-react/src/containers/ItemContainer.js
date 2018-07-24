@@ -57,7 +57,7 @@ class ItemContainer extends Component {
         });
     }
 
-    //在列表项中点击撤销
+    //在列表项或详细信息中点击撤销
     handleOnCancel() {
         this.setState({
             opType: 'cancel',
@@ -66,7 +66,7 @@ class ItemContainer extends Component {
         });
     }
 
-    //在列表项点击删除
+    //在列表项或详细信息中点击删除
     handleOnDelete() {
         this.setState({
             opType: 'delete',
@@ -111,7 +111,6 @@ class ItemContainer extends Component {
 
     //在详细信息中点击再次/马上报修
     handleOnAddBill(e,item) {
-        console.log("OOO")
         if (this.props.onAddBill) {
             this.props.onAddBill(e,item);
         }
@@ -124,10 +123,10 @@ class ItemContainer extends Component {
         if (this.props.page === 'Bill') {
             return(
                 <div id="item-container">
-                    <Item item={this.props.item} index={this.props.index} onCheck={this.handleOnCheck.bind(this)}
+                    <Item item={this.props.item} onCheck={this.handleOnCheck.bind(this)}
                         onCancel={this.handleOnCancel.bind(this)} onDelete={this.handleOnDelete.bind(this)}    
                     />
-                    <BillDetail show={this.state.showDetail} item={this.props.item} onDelete={this.handleOnDelete.bind(this)}
+                    <BillDetail show={this.state.showDetail} index={this.props.index} item={this.props.item} onDelete={this.handleOnDelete.bind(this)}
                         onClose={this.handleOnClose.bind(this)} onCancel={this.handleOnCancel.bind(this)} onAddBill={this.handleOnAddBill.bind(this)}
                     />
                     <Prompt show={this.state.showPrompt} onConfirm={this.handleOnConfirm.bind(this)} onClose={this.handleOnClose.bind(this)}  />
@@ -136,7 +135,7 @@ class ItemContainer extends Component {
         } else {
             return(
                 <div id="item-container">
-                    <Item item={this.props.item} index={this.props.index} onCheck={this.handleOnCheck.bind(this)}
+                    <Item item={this.props.item} onCheck={this.handleOnCheck.bind(this)}
                          onDelete={this.handleOnDelete.bind(this)}    
                     />
                     <DeviceDetail show={this.state.showDetail} item={this.props.item} onDelete={this.handleOnDelete.bind(this)}
@@ -169,4 +168,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(ItemContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemContainer);

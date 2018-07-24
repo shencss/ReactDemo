@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import AddBill from '../components/AddBill';
 import List from '../components/List';
-import Contact from '../components/Contact';
 import { connect } from 'react-redux';
 import { addBillItem } from '../reducers/reducer';
 import PropTypes from 'prop-types';
-import AddDevice from '../components/AddDevice';
+import ContactContainer from './ContactContainer';
 
 class Body extends Component {
 
@@ -34,7 +33,6 @@ class Body extends Component {
 
     //点击报修或在详细信息中点击再次/马上报修
     handleOnAddBill(e,load) {
-        console.log("KKK")
         this.setState({
             addBill: true,
             //load是为了实现再次/立即报修时将信息load进表单中
@@ -92,9 +90,7 @@ class Body extends Component {
         } else {
             return(
                 <div className="body">
-                    <div id="contact-page">
-                        <Contact />
-                    </div>
+                    <ContactContainer />
                     <AddBill page={this.props.page}/>
                 </div>
             );
@@ -118,4 +114,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Body);
+export default connect(mapStateToProps, mapDispatchToProps)(Body);

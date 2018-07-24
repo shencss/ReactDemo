@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { addFeedback } from '../reducers/reducer';
 
 class Feedback extends Component {
 
     static propTypes = {
         onSubmit: PropTypes.func,
-        onClick: PropTypes.func
+        onClose: PropTypes.func
     }
     
     constructor() {
@@ -15,13 +13,6 @@ class Feedback extends Component {
         this.state = {
             feedback: ''
         }
-    }
-
-    //往localstorage中添加一条反馈
-    _addFeedback(feedback) {
-        const data = JSON.parse(localStorage.report_data);
-        data.feedback.push(feedback);
-        localStorage.setItem('report_data', JSON.stringify(data));
     }
 
     //点击关闭按钮
@@ -40,13 +31,10 @@ class Feedback extends Component {
 
     //点击提交反馈
     handleOnSubmit() {
-        console.log(this.state.feedback);
-        this._addFeedback(this.state.feedback);
         if (this.props.onSubmit) {
-            console.log(this.state.feedback);
             this.props.onSubmit(this.state.feedback);
-            this.props.onClose();
         }
+        return false;
     }
 
     render() {
@@ -67,12 +55,4 @@ class Feedback extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onSubmit: (feedback) => {
-            dispatch(addFeedback(feedback));
-        }
-    }
-}
-
-export default connect(null,mapDispatchToProps)(Feedback);
+export default Feedback;
