@@ -3,8 +3,8 @@
 
 # 功能介绍：
 ## 我的报单页面：
-![](https://github.com/shencss/ReactDemo/edit/master/report-react/src/drawable/我的报单.png)
-![](https://github.com/shencss/ReactDemo/edit/master/report-react/src/drawable/报单详细信息.png)
+![](https://github.com/shencss/ReactDemo/raw/master/report-react/src/drawable/Bill.png)
+![](https://github.com/shencss/ReactDemo/raw/master/report-react/src/drawable/BillDetail.png)
 ### 主要功能：
 * 报修设备
 * 显示报单编号、报修时间及报单状态
@@ -15,8 +15,8 @@
 * 联系客服
 
 ## 我的设备页面：
-![](https://github.com/shencss/ReactDemo/edit/master/report-react/src/drawable/我的设备.png)
-![](https://github.com/shencss/ReactDemo/edit/master/report-react/src/drawable/设备详细.png)
+![](https://github.com/shencss/ReactDemo/raw/master/report-react/src/drawable/Device.png)
+![](https://github.com/shencss/ReactDemo/raw/master/report-react/src/drawable/DeviceDetail.png)
 ### 主要功能：
 * 报修设备
 * 显示设备名称、设备编号及设备状态
@@ -25,7 +25,7 @@
 * 查看设备保修状况
 
 ## 联系我们页面：
-![](https://github.com/shencss/ReactDemo/edit/master/report-react/src/drawable/联系我们.png)
+![](https://github.com/shencss/ReactDemo/raw/master/report-react/src/drawable/Contact.png)
 ### 主要功能：
 * 联系客服
 * 查看维修厂商信息
