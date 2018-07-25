@@ -11,7 +11,8 @@ class BillDetail extends Component {
         onClose: PropTypes.func,
         onCancel: PropTypes.func,
         onDelete: PropTypes.func,
-        onAddBill: PropTypes.func
+        onAddBill: PropTypes.func,
+        onAddFeedback: PropTypes.func
     }
     
     constructor() {
@@ -60,14 +61,20 @@ class BillDetail extends Component {
         });
     }
 
+    //完工报告中点击反馈
+    handleOnAddFeedback() {
+        if (this.props.onAddFeedback) {
+            this.props.onAddFeedback();
+        }
+    }
+
     render() {
         if (this.props.show) {
             const item = this.props.item
             if (!this.state.showReport) {
                 return(
                     <div id="bill-detail">
-                        <div className="card">
-                        
+                        <div className="card">      
                             <span className="iconfont" id="close-btn" onClick={this.handleOnClose.bind(this)}>&#xe6df;</span>
                             <span className="card-title">订单详细信息</span>
                             <hr/>
@@ -147,7 +154,7 @@ class BillDetail extends Component {
             } else {
                 return(
                     <div id="bill-detail">
-                        <BillReport index={this.props.index} item={this.props.item} onClose={this.handleOnClose.bind(this)}/>
+                        <BillReport item={this.props.item} onClose={this.handleOnClose.bind(this)} onAddFeedback={this.handleOnAddFeedback.bind(this)}/>
                         <Cover show={this.props.show} onClick={this.handleOnClose.bind(this)} />
                     </div>
                 )

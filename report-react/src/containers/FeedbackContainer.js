@@ -7,6 +7,7 @@ import { addFeedback } from '../reducers/reducer';
 class FeedbackContainer extends Component {
 
     static propTypes = {
+        show: PropTypes.bool,
         index: PropTypes.number,
         onClose: PropTypes.func,
         onSubmit: PropTypes.func
@@ -37,7 +38,7 @@ class FeedbackContainer extends Component {
 
     render() {
         return(
-            <Feedback onClose={this.handleOnClose.bind(this)} onSubmit={this.handleOnSubmit.bind(this)} />
+            <Feedback show={this.props.show} onClose={this.handleOnClose.bind(this)} onSubmit={this.handleOnSubmit.bind(this)} />
         );
     }
 }

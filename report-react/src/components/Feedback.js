@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Cover from './Cover';
 
 class Feedback extends Component {
 
     static propTypes = {
+        show: PropTypes.bool,
         onSubmit: PropTypes.func,
         onClose: PropTypes.func
     }
@@ -39,7 +41,7 @@ class Feedback extends Component {
 
     render() {
         return(
-            <div id="feedback">
+            <div id="feedback" style={this.props.show ? {} : {'display': 'none'}}>
                 <iframe name='feedback-frame' title="frame" style={{'display': 'none'}}></iframe>
                 <form action="" className="feedback-form" target="feedback-frame" onSubmit={this.handleOnSubmit.bind(this)}>
                     <span className="iconfont" id="close-btn" onClick={this.handleOnClose.bind(this)}>&#xe6df;</span>
@@ -50,6 +52,7 @@ class Feedback extends Component {
                     </textarea><br/>
                     <input type="submit" id="feedback-submit" value="提交"/>
                 </form>
+                <Cover show={this.props.show} onClick={this.handleOnClose.bind(this)} />
             </div>
         );
     }

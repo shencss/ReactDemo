@@ -6,6 +6,7 @@ import Prompt from '../components/Prompt'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteBillItem, cancelBillItem, deleteDeviceItem } from '../reducers/reducer';
+import FeedbackContainer from './FeedbackContainer';
 
 class ItemContainer extends Component {
 
@@ -25,7 +26,8 @@ class ItemContainer extends Component {
             //定义操作类型 cancel：撤销 delete：删除
             opType: '',
             showDetail: false,
-            showPrompt: false
+            showPrompt: false,
+            addFeedback: false
         }
     }
 
@@ -119,6 +121,21 @@ class ItemContainer extends Component {
         });
     } 
 
+    //在完工报告中点击反馈
+    handleOnAddFeedback() {
+        this.setState({
+            addFeedback: true
+        });
+        this.handleOnClose();
+    }
+
+    //点击关闭反馈
+    handleOnCloseFeedback() {
+        this.setState({
+            addFeedback: false
+        });
+    }
+
     render() {
         if (this.props.page === 'Bill') {
             return(
@@ -127,9 +144,11 @@ class ItemContainer extends Component {
                         onCancel={this.handleOnCancel.bind(this)} onDelete={this.handleOnDelete.bind(this)}    
                     />
                     <BillDetail show={this.state.showDetail} index={this.props.index} item={this.props.item} onDelete={this.handleOnDelete.bind(this)}
-                        onClose={this.handleOnClose.bind(this)} onCancel={this.handleOnCancel.bind(this)} onAddBill={this.handleOnAddBill.bind(this)}
+                        onClose={this.handleOnClose.bind(this)} onCancel={this.handleOnCancel.bind(this)} 
+                        onAddBill={this.handleOnAddBill.bind(this)} onAddFeedback={this.handleOnAddFeedback.bind(this)}
                     />
                     <Prompt show={this.state.showPrompt} onConfirm={this.handleOnConfirm.bind(this)} onClose={this.handleOnClose.bind(this)}  />
+                    <FeedbackContainer show={this.state.addFeedback}  index={this.props.index} onClose={this.handleOnCloseFeedback.bind(this)}/>
                 </div>
             );
         } else {
