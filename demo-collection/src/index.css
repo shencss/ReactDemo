@@ -56,10 +56,32 @@ body {
   transform: scale(.5)
 }
 .item-introduction {
+  position: relative;
   padding: 10px;  
+}
+.item-introduction .item-decription {
+  font-size: 13px;
+  color: #CCC;
 }
 .item-introduction hr {
   margin: 5px 0;
+  width: 85%;
+}
+.item-link {
+  position: absolute;
+  bottom: 17px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  color: #FFF;
+  text-align: center;
+  background-color: #191A1D;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  text-decoration: none;
+
 }
 
 

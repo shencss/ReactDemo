@@ -22,8 +22,9 @@ class CollectionApp extends Component {
                 {"url":"http://htmlpreview.github.io/?https://github.com/shencss/FrontEndDemo/blob/master/便签/index.html", "title":"H5Note  记事小便签", "description":"使用localStorage + form"},
                 {"url":"http://htmlpreview.github.io/?https://github.com/shencss/FrontEndDemo/blob/master/自定义日历/index.html", "title":"H5Calendar  自定义日历", "description":"使用div+css + Date()"},
                 {"url":"http://htmlpreview.github.io/?https://github.com/shencss/FrontEndDemo/blob/master/贝塞尔曲线弹性导航/index.html", "title":"CubicBezier  弹性曲线导航", "description":"使用animation + cubic-bezier + fontawsome"},
-                {"url":"http://htmlpreview.github.io/?https://github.com/shencss/FrontEndDemo/blob/master/便签/index.html", "title":"H5Note  记事小便签", "description":"使用了LocalStorage实现"},
-                {"url":"http://htmlpreview.github.io/?https://github.com/shencss/FrontEndDemo/blob/master/便签/index.html", "title":"H5Note  记事小便签", "description":"使用了LocalStorage实现"},
+                {"url":"http://htmlpreview.github.io/?https://github.com/shencss/FrontEndDemo/blob/master/3D翻页/index.html", "title":"3DPage  3D翻页", "description":"使用perspective + animation + transform"},
+                {"url":"http://htmlpreview.github.io/?https://github.com/shencss/FrontEndDemo/blob/master/待办清单/index.html", "title":"Todos  待办清单", "description":"使用localStorage + JQ"},
+                {"url":"http://htmlpreview.github.io/?https://github.com/shencss/FrontEndDemo/blob/master/照片阴影/index.html", "title":"PhotoShaow 自定义阴影", "description":"使用::before/::after伪元素"},
             ]}
         }
     }

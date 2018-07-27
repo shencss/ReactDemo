@@ -19,6 +19,7 @@ class CollectionItem extends Component {
                 <h4 className="item-title">{this.props.demo.title}</h4>
                 <hr/>
                 <p className="item-decription">{this.props.demo.description}</p>
+                <a className="item-link" href={this.props.demo.url} target="_blank">Go</a>
             </div>
         </div>
        )
