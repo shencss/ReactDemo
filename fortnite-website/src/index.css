@@ -10,11 +10,17 @@ body {
   padding: 0;
   font-family: "Microsoft YaHei";
 }
+div {
+  display: block;
+}
 a {
   text-decoration: none;
   outline: 0 none;
 }
-
+img {
+  display: block;
+  border: none;
+}
 li {
   display: list-item;
   text-align: -webkit-match-parent;
@@ -27,6 +33,7 @@ li {
   background-color: #333;
   display: block;
   height: 60px;
+  z-index: 3;
 }
 .nav-box {
   padding: 0;
@@ -74,7 +81,7 @@ li {
   position: absolute;
   padding-top: 10px;
   width: 100%;
-  z-index: 2;
+  z-index: 4;
   height: 0;
   opacity: 0;
   overflow: hidden;
@@ -100,7 +107,6 @@ li {
   background-color: #1D1B2D;
   width: 100%;
   height: 0;
-  z-index: 1;
   transition: all .5s ease;
 }
 .nav-box .sub-nav-bg:hover + ul li .sub-nav {
@@ -122,6 +128,7 @@ li {
   width: 100%;
   height: 450px;
   background: url(./drawable/banner.jpg);
+  z-index: 2;
 }
 .banner-link-box {
   width: 1400px;
@@ -259,4 +266,125 @@ li {
   100% {
     transform: translateY(5px);
   }
+}
+
+/*** Activity ***/
+#fn-activity {
+  background: linear-gradient(to bottom, #DFC7F1 0px, #F5F5F5 400px);
+}
+.content {
+  width: 1400px;
+  margin: 0 auto;
+  overflow: hidden;
+  font-size: 14px;
+  position: relative;
+  min-height: 800px;
+}
+.clearfix::after {
+  content: ' ';
+  clear: both;
+  height: 0;
+  visibility: hidden;
+  display: block;
+}
+.page-position {
+  padding: 93px 0 36px;
+  line-height: 20px;
+  color: #333;
+}
+.icon-house {
+  width: 16px;
+  height: 14px;
+  margin: -4px 10px 0 0;
+  background: url(./drawable/common.png) no-repeat;
+  background-position: 0 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+.activity-nav li {
+  width: 117px;
+  height: 42px;
+  line-height: 42px;
+  font-size: 18px;
+  font-weight: bold;
+  float: left;
+  text-align: center;
+  cursor: pointer;
+  margin-right: 15px;
+}
+.comm {
+  background: url(./drawable/common.png) no-repeat;
+}
+.activity-nav .comm {
+  background-position: -208px -276px;
+  color: #FFF;
+}
+.activity-list {
+  width: 1500px;
+  padding-top: 40px;
+}
+.activity-list li {
+  width: 407px;
+  background-color: #FFF;
+  padding: 10px;
+  float: left;
+  margin: 0 60px 60px 0;
+  line-height: 32px;
+  position: relative;
+  color: #6D6C6A;
+  transition: all .3s linear;
+}
+.activity-img {
+  font-size: 16px;
+  font-weight: bold;
+  color: #3E3E3E;
+}
+.activity-img img {
+  width: 407px;
+  height: 234px;
+}
+.activity-img .activity-status {
+  width: 97px;
+  height: 32px;
+  line-height: 32px;
+  text-align: center;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #FFF;
+  font-weight: normal;
+  background-position: -335px -276px;
+}
+.activity-collection {
+  position: absolute;
+  top: 245px;
+  right: 10px;
+  color: #F5843E;
+  cursor: pointer;
+}
+.icon-star {
+  width: 17px;
+  height: 17px;
+  background-position: -208px -328px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: -3px 5px 0 0;
+}
+.activity-collection:hover {
+  text-decoration: underline;
+}
+.activity-list li p {
+  width: 320px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+  vertical-align: middle;
+}
+.activity-list li p.activity-time {
+  color: #a6a6a6;
+}
+.activity-list li:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, .2);
 }
