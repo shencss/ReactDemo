@@ -15,6 +15,11 @@ a {
   outline: 0 none;
 }
 
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
 /*** Header ***/
 #fn-header {
   position: relative;
@@ -89,7 +94,7 @@ a {
 }
 .nav-box .sub-nav-bg {
   position: fixed;
-  top: 58px;
+  top: 60px;
   left: 0;
   opacity: 0;
   background-color: #1D1B2D;
@@ -109,6 +114,149 @@ a {
 .nav-box ul:hover + .sub-nav-bg {
   opacity: .7;
   height: 245px;
-} 
+}
 
-
+/*** Banner ***/
+#fn-banner {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  background: url(./drawable/banner.jpg);
+}
+.banner-link-box {
+  width: 1400px;
+  height: 134px;
+  position: absolute;
+  left: 50%;
+  bottom: -53px;
+  margin-left: -700px;
+  background-color: red;
+  box-shadow: 0 8px 11px rgba(0, 0, 0, .2);
+}
+.banner-link-list li {
+  width: 240px;
+  height: 134px;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+}
+.banner-link-list li a {
+  display: block;
+  height: 100%;
+  position: relative;
+}
+.link-icon {
+  background: url(./drawable/icon_spr.png) no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  width: 42px;
+  height: 42px;
+}
+.banner-link-box .cn {
+  font-size: 30px;
+  color: #FFF;
+  line-height: 134px;
+  display: inline-block;
+  vertical-align: -4px;
+}
+.icon-download {
+  width: 55px;
+  height: 62px;
+  background-position: 0 0;
+  position: relative;
+  vertical-align: -31px;
+}
+.icon-arrow {
+  width: 26px;
+  height: 30px;
+  background-position: -95px -16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -15px;
+  margin-left: -13px;
+}
+.icon-lottery {
+  background-position: -488px -8px;
+}
+.icon-newbee {
+  background-position: -169px -9px;
+}
+.icon-video {
+  background-position: -326px -3px;
+}
+.icon-act {
+  background-position: -414px -1px;
+  height: 44px;
+}
+#download-btn {
+  width: 440px;
+  line-height: 134px;
+  background-color: #F9CF2F;
+}
+#download-btn a {
+  color: #333;
+}
+#download-btn .f {
+  display: inline-block;
+  width: 160px;
+  text-align: center;
+  height: 60px;
+  line-height: 20px;
+  vertical-align: -31px;
+}
+#download-btn .d-cn {
+  font-size: 38px;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+}
+#download-btn .en {
+  height: 20px;
+  line-height: 20px;
+  display: inline-block;
+  font-size: 18px;
+}
+#gray-btn {
+  background-color: #EB9257;
+}
+#live-btn {
+  background-color: #1AC2FE;
+}
+#video-btn {
+  background-color: #611DB2;
+}
+#act-btn {
+  background-color: #D93E5E;
+}
+.banner-link-list li, .banner-link-list li a, .banner-link-list li .link-icon, .banner-link-list li:hover a, .banner-link-list li:hover .link-icon {
+  transition: all .2s linear;
+}
+.banner-link-list li:hover {
+  filter: saturate(1.3);
+}
+.banner-link-list li:hover a {
+  transform: translateY(-5px);
+}
+.banner-link-list li:hover .link-icon {
+  transform: rotate(-25deg);
+}
+.banner-link-list li:hover .icon-download {
+  transform: rotate(0deg);
+}
+.banner-link-list li:hover .icon-arrow {
+  transform: rotate(0deg);
+  animation: up-down 1s ease both infinite;
+}
+@keyframes up-down {
+  0% {
+    transform: translateY(5px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(5px);
+  }
+}

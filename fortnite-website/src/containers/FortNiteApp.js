@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../components/Header'
 import Banner from '../components/Banner';
+import Activity from '../components/Activity';
 import { connect } from 'react-redux';
 import { init } from '../reducers/reducer';
 
@@ -15,6 +16,7 @@ class FortNiteApp extends Component {
             <div id="fn-app">
                 <Header />
                 <Banner />
+                <Activity />
             </div>
         );
     }
