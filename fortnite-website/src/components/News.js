@@ -113,8 +113,8 @@ class News extends Component {
                                 </ul>
                             </div>   
                         </div>
-                        <a className="arrow arrow1" onClick={this.handleOnPreNews.bind(this)}>上一页</a>
-                        <a className="arrow arrow2" onClick={this.handleOnNextNews.bind(this)}>下一页</a>
+                        <a className="arrow arrow1" onClick={this.handleOnPreNews.bind(this)} style={this.state.index === 1 ? {display: 'none'} : {}}>上一页</a>
+                        <a className="arrow arrow2" onClick={this.handleOnNextNews.bind(this)} style={this.state.index === 7 ? {display: 'none'} : {}}>下一页</a>
                         <div className="news-nav">
                             <span className={this.state.index === 1 ? "navItemOn" : ''} title="1" onClick={this.handleOnNav.bind(this)}></span>
                             <span className={this.state.index === 3 ? "navItemOn" : ''} title="2" onClick={this.handleOnNav.bind(this)}></span>

@@ -373,7 +373,7 @@ li {
     height: 52px;
     background: url(./drawable/spr.png) no-repeat;
     line-height: 300;
-    transition: all .2s ease;
+    transition: all .3s ease;
     cursor: pointer;
 }
 .news .arrow1 {
