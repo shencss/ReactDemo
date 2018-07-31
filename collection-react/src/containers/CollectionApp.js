@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CollectionItem from '../components/CollectionItem';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { init } from '../reducers/reducer';
+import { init, addCollection } from '../reducers/reducer';
 
 class CollectionApp extends Component {
 
@@ -12,7 +12,7 @@ class CollectionApp extends Component {
     constructor() {
         super();
         this.state = {
-            data: {demos: [{"url":"http://htmlpreview.github.io/?https://github.com/shencss/FrontEndDemo/blob/master/Quote/index.html", "title":"Quote  小说名言展示应用", "description":"使用JQ + JQ-UI + Ajax"},
+            data: {collections: [{"url":"http://htmlpreview.github.io/?https://github.com/shencss/FrontEndDemo/blob/master/Quote/index.html", "title":"Quote  小说名言展示应用", "description":"使用JQ + JQ-UI + Ajax"},
                 {"url":"http://htmlpreview.github.io/?https://github.com/shencss/FrontEndDemo/blob/master/BrowseHappy/index.html", "title":"BrowseHappy  主流浏览器版本更新应用", "description":"使用CSS-Sprite"},
                 {"url":"http://htmlpreview.github.io/?https://github.com/shencss/FrontEndDemo/blob/master/CanvasWave/index.html", "title":"CanvasWave  动态波浪动画", "description":"使用Canvas + bezierCurveTo"},
                 {"url":"http://htmlpreview.github.io/?https://github.com/shencss/FrontEndDemo/blob/master/VerticalTimeline/index.html", "title":"VerticalTimeline  响应式垂直时间轴", "description":"使用@media + ::before/::after"},
@@ -25,7 +25,12 @@ class CollectionApp extends Component {
                 {"url":"http://htmlpreview.github.io/?https://github.com/shencss/FrontEndDemo/blob/master/3D翻页/index.html", "title":"3DPage  3D翻页", "description":"使用perspective + animation + transform"},
                 {"url":"http://htmlpreview.github.io/?https://github.com/shencss/FrontEndDemo/blob/master/待办清单/index.html", "title":"Todos  待办清单", "description":"使用localStorage + JQ"},
                 {"url":"http://htmlpreview.github.io/?https://github.com/shencss/FrontEndDemo/blob/master/照片阴影/index.html", "title":"PhotoShaow 自定义阴影", "description":"使用::before/::after伪元素"},
-            ]}
+            ]},
+            url: '',
+            title: '',
+            description: '',
+            addCollection: false,
+            buttonStyle: {}
         }
     }
 
@@ -33,16 +38,53 @@ class CollectionApp extends Component {
         this.props.initData(this.state.data);
     }
 
+    handleOnChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+
+    handleOnSubmit() {
+        if (!this.state.addCollection) {
+            this.setState({
+                addCollection: true,
+                buttonStyle: {bottom: '20px',top: '70%', marginTop: '0'}
+            });
+        }
+        if (this.state.url !== '' && this.state.title !== '' && this.state.description !== '') {
+            const newCollection = {url: this.state.url, title: this.state.title, description: this.state.description};
+            this.props.addCollection(newCollection);
+            this.setState({
+                url: '',
+                title: '',
+                description: '',
+                addCollection: false,
+                buttonStyle: {}
+            });
+        }
+    }
+
+
     render() {
-        console.log(this.props)
-        if (this.props.demos) {
+        if (this.props.collections) {
             return(
                 <div id="collection-app">
                     <header className="collection-header">
                         <h1>My Collection</h1>
                     </header>
                     <div className="collection-ground">
-                        {this.props.demos.map((demo, i) => <CollectionItem demo={demo} key={i} />)}
+                        {this.props.collections.map((collection, i) => <CollectionItem collection={collection} key={i} />)}
+                        <div className="collection-form">
+                            <div style={this.state.addCollection ? {} : {opacity: '0'}} >
+                                <label htmlFor="url">请输入URL</label>
+                                <input name="url" type="text" value= {this.state.url} onChange={this.handleOnChange.bind(this)} />
+                                <label htmlFor="title">请输入标题</label>
+                                <input name="title" type="text" value= {this.state.title} onChange={this.handleOnChange.bind(this)} />
+                                <label htmlFor="description">请输入描述文字</label>
+                                <textarea name="description" value= {this.state.description} type="text"onChange={this.handleOnChange.bind(this)} />
+                            </div>
+                            <input type="submit"  style={this.state.buttonStyle} value="+" onClick={this.handleOnSubmit.bind(this)} />
+                        </div>
                     </div>
                 </div>
             );
@@ -54,7 +96,7 @@ class CollectionApp extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        demos: state.demos
+        collections: state.collections
     }
 }
 
@@ -62,6 +104,9 @@ const mapDispatchToProps = (dispatch) => {
     return{
         initData: (data) => {
             dispatch(init(data));
+        },
+        addCollection: (collection) => {
+            dispatch(addCollection(collection));
         }
     }
 }

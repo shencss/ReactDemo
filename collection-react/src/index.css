@@ -29,6 +29,46 @@ body {
   padding: 50px;
   flex-wrap: wrap;
 }
+.collection-form {
+  background-color: #33323B;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, .7);
+  height: 354px;
+  flex: 0 0 400px;
+  margin: 50px;
+  padding: 10px;
+  position: relative;
+}
+.collection-form input[type="text"], .collection-form textarea {
+  width: 360px;
+  height: 30px;
+  display: block;
+  margin: 10px 0;
+  font-size: 12px;
+  line-height: 30px;
+  border-radius: 5px;
+  border: none;
+  padding: 0 10px;
+  color: #000;
+}
+.collection-form input[type="submit"] {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  border-radius: 50%;
+  border: none;
+  background-color: #191A1D;
+  color: #FFF;
+  font-size: 60px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, .7);
+  margin-left: -40px;
+  margin-top: -40px;
+  cursor: pointer;
+  transition: all .5s linear;
+}
 
 /*** CollectionItem ***/
 .collection-item {
@@ -37,9 +77,7 @@ body {
   box-shadow: 2px 2px 2px rgba(0, 0, 0, .7);
   width: 400px;
   height: 374px;
-  flex: 1;
-  flex-grow: 0;
-  flex-shrink: 0; 
+  flex: 0 0 400px;
   margin: 50px;
 }
 .item-frame {
@@ -80,9 +118,11 @@ body {
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  box-shadow: 0 0 3px rgba(0, 0, 0, .7);
   text-decoration: none;
-
 }
+
+
 
 
 
