@@ -15,7 +15,6 @@
 ## redbag-app：
 基于React实现的仿微信红包APP
 ![](https://github.com/shencss/ReactDemo/raw/master/redbag-app/src/screenshot/redbag1.png)
-![](https://github.com/shencss/ReactDemo/raw/master/redbag-app/src/screenshot/redbag2.png)
 ![](https://github.com/shencss/ReactDemo/raw/master/redbag-app/src/screenshot/redbag3.png)
 
 ## report-react：
