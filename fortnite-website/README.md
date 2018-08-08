@@ -1,3 +1,12 @@
-## Fortnite-Website
-¸öÈË»ùÓÚReact·ÂĞ´µÄ±¤ÀİÖ®Ò¹ÍøÕ¾£¬ÓµÓĞÏÂÀ­Ê½¸±µ¼º½¡¢¶¯Ì¬ÉìËõ°´¼ü¡¢»¬¶¯Ê½¿¨Æ¬µÈ·á¸»µÄ½»»¥ÌØĞ§
-![](https://github.com/shencss/ReactDemo/raw/master/fortnite-website/src/drawable/readme.png)
+# ç®€ä»‹ï¼š
+åŸºäºReactä»¿å†™çš„å ¡å’ä¹‹å¤œç½‘ç«™ï¼Œæ‹¥æœ‰ä¸°å¯Œçš„äº¤äº’ç‰¹æ•ˆ 
+## å®ç°æŠ€æœ¯
+* React
+* React-Redux
+## ä¸»è¦åŠŸèƒ½
+* ä¸‹æ‹‰å¼å‰¯å¯¼èˆª
+* åŠ¨æ€ä¼¸ç¼©æŒ‰é”®
+* æ»‘åŠ¨å¼å¡ç‰‡
+* æ‚¬åœåŠ¨æ€åŠäºŒç»´ç å±•ç¤º
+## è¿è¡Œæˆªå›¾
+![](https://github.com/shencss/ReactDemo/raw/master/fortnite-website/src/screenshot/fortnite.png)
