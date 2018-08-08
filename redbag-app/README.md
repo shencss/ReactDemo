@@ -9,6 +9,6 @@
 * 打开红包随机分配金额
 * 显示最佳手气
 ## 运行截图
-![](https://github.com/shencss/ReactDemo/raw/master/redbag-app/src/screenshot/redbag-app1.png)
-![](https://github.com/shencss/ReactDemo/raw/master/redbag-app/src/screenshot/redbag-app2.png)
-![](https://github.com/shencss/ReactDemo/raw/master/redbag-app/src/screenshot/redbag-app3.png)
+![](https://github.com/shencss/ReactDemo/raw/master/redbag-app/src/screenshot/redbag1.png)
+![](https://github.com/shencss/ReactDemo/raw/master/redbag-app/src/screenshot/redbag2.png)
+![](https://github.com/shencss/ReactDemo/raw/master/redbag-app/src/screenshot/redbag3.png)
