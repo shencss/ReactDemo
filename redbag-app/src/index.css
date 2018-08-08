@@ -1,0 +1,248 @@
+html {
+	font-size: 16px;
+}
+
+body {
+	margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+ul {
+	padding: 0;
+	margin: 0;
+}
+
+li {
+	list-style: none;
+}
+
+label {
+	font-size: 1.1rem;
+}
+
+input {
+	box-sizing: border-box;
+	width: 100%;
+	padding: 10px;
+	margin: 8px auto;
+	border: none;
+	border-radius: 8px;
+}
+
+/*** SendPage的样式 ***/
+.wrapper-input {
+	min-height: 402px;
+	border-radius: 20px;
+	width: 260px;
+	margin: 100px auto;
+	padding: 20px;
+	border: 1px solid #D1D1D1;
+	background-color: #D45657;
+	color: #FFF;
+}
+
+h2 {
+	font-size: 1.5rem;
+	text-align: center;
+	margin: 0 auto 35px;
+	font-weight: normal;
+	padding: 10px;
+	border-bottom: 1px solid #FFF;
+}
+
+.input-field {
+	margin-top: 30px;
+	position: relative;
+}
+
+.send-bag {
+	font-size: 1.2rem;
+	padding: 10px;
+	margin: 50px auto 10px;
+	text-align: center;
+	background-color: #E07F79;
+	border-radius: 10px;
+	position: relative;
+	z-index: 1;
+}
+
+.white {
+	position: relative;
+}
+
+.animate {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 300px;
+	bottom: 0;
+	background-color: #BD4A43;
+	border-radius: 20px;
+	z-index: 10;
+}
+
+.mask1 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 20px 20px 0 0;
+	width: 300px;
+	height: 80px;
+	background-color: #D45657;
+}
+
+.mask2 {
+	position: absolute;
+	top: 80px;
+	left: 0;
+	width: 300px;
+	height: 200px;
+	border-radius: 0 0 50% 50%;
+	background-color: #D45657;
+}
+
+.change1 {
+	animation: heightChange1 .5s ease-out 1s forwards;
+}
+
+.change2 {
+	animation: heightChange2 1s ease-in forwards;
+}
+
+.hide {
+	animation: visibleChange .2s ease-in-out 1.5s forwards;
+}
+
+.open {
+	cursor: pointer;
+	position: absolute;
+	top: 240px;
+	left: calc(50% - 40px);
+	width: 80px;
+	font-size: 30px;
+	line-height: 80px;
+	text-align: center;
+	color: #000;
+	background-color: #FEDD98;
+	border-radius: 40px;
+	animation: myRotate 1.5s ease-in-out infinite;
+}
+
+@keyframes heightChange1 {
+	0% {
+		height: 80px;
+	}
+	50% {
+		height: 20px;
+		opacity: 0;
+	}
+	100% {
+		height: 0;
+		opacity: 0;
+	}
+}
+
+@keyframes heightChange2 {
+	0% {
+		height: 200px;
+	}
+	50% {
+		height: 220px;
+	}
+	100% {
+		height: 0;
+	}
+}
+
+
+@keyframes visibleChange {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: .2;
+	}
+	100% {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+@keyframes myRotate {
+	0% {
+		transform: rotateY(0deg);
+	}
+	50% {
+		transform: rotateY(180deg);
+	}
+	100% {
+		transform: rotateY(0deg);
+	}
+}
+
+/*** Info的样式 **/
+.alert-info {
+	position: absolute;
+	left: 0;
+	bottom: -1rem;
+	color: rgb(255, 230, 100);
+}
+
+/*** BagList的样式 ***/
+.circle-field {
+	position: absolute;
+	left: 0;
+	top: 70px;
+	height: 80px;
+	width: 300px;
+	background-color: #FFEFEF;
+	border-radius: 50% 50% 0 0;
+}
+
+.block-field {
+	position: absolute;
+	top: 150px;
+	left: 0;
+	height: 190px;
+	width: 300px;
+	background-color: #FFEFEF;
+}
+
+.show-field {
+	margin-bottom: 45px;
+}
+
+.money-field {
+	text-align: center;
+}
+
+.list-field {
+	box-sizing: border-box;
+	position: relative;
+	margin: 0 -20px;
+	z-index: 1;
+	height: 210px;
+	overflow: auto;
+	color: rgb(160, 89, 89);
+}
+
+/*** Listem的样式 **/
+.bag-item {
+	box-sizing: border-box;
+	border-bottom: 1px solid #D1D1D1;
+}
+
+.item-name, .item-money, .item-rest {
+	display: inline-block;
+	padding: 5px 10px;
+}
+
+.item-isMax {
+	display: inline-block;
+}
